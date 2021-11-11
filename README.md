@@ -27,7 +27,7 @@ Database (Reading and writing)  - Ronny
 Login screen & security stuff (Data validation and cookie management) - Darren
 
 ## Timeline:
-11 Nov - 18 Nov: Complete the base features
-18 Nov - 25 Nov: Merging and styling, start on additional features
-25 Nov - 3 Dec: Additional features, Report and presentation.
+11 Nov - 18 Nov: Complete the base features <br>
+18 Nov - 25 Nov: Merging and styling, start on additional features <br>
+25 Nov - 3 Dec: Additional features, Report and presentation. <br>
 3 Dec: Deadline
