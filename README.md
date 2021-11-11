@@ -22,9 +22,9 @@
 6. Other contributors will now be able to view your commits and work on top of them. :)
 
 ## Proposed tasks:
-Website (Landing page, menu, responsiveness) & Games  - Wesley & Jon
-Database (Reading and writing)  - Ronny
-Login screen & security stuff (Data validation and cookie management) - Darren
+Website (Landing page, menu, responsiveness) & Games  - Wesley & Jon <br>
+Database (Reading and writing)  - Ronny <br>
+Login screen & security stuff (Data validation and cookie management) - Darren <br>
 
 ## Timeline:
 11 Nov - 18 Nov: Complete the base features <br>
