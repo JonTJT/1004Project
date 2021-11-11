@@ -9,7 +9,7 @@
 4. Choose where you want to setup the repository to in the GitHub Desktop application.
 5. The repository will be in the folder you have specified. You are now free to make changes.
 
-## Steps when coding (Will update accordingly, have never worked with Arduino and GitHub):
+## Steps when coding:
 1. Before coding, ensure that the branch selected is the dev branch:
 ![image](https://user-images.githubusercontent.com/23615745/140255287-00a96237-9f38-47df-96a9-9005674a5576.png)
 2. Ensure that you have pulled the latest version of the project before making any changes to ensure that you are coding on top of the latest code.
