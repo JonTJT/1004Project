@@ -1,8 +1,17 @@
-<?php
+<head>
+    <?php
+    include "head.inc.php";
+    ?> 
+</head>
+<body class="body_bg">     
+    <?php
+    include "nav.inc.php";
+    ?> 
+    <main class="container text-white"> 
+        <h1>Profile</h1>
+    </main> 
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+    <?php
+    include "footer.inc.php";
+    ?> 
+</body> 
