@@ -1,14 +1,14 @@
 <head>
     <?php
-        include "head.inc.php"; 
+    include "head.inc.php"; 
     ?> 
 </head>
-<body>     
+<body class="body_bg">     
     <?php 
         include "nav.inc.php"; 
     ?> 
  
-    <main class="container"> 
+    <main class="container text-white"> 
         <h1>Member Registration</h1> 
         <p> 
             For existing members, please go to the 

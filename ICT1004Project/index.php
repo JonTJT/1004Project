@@ -25,22 +25,22 @@ and open the template in the editor.
                         <h3>Tetris</h3>
                         <a href="Games/tetris.php">
                             <figure>
-                                <img class="img-thumbnail" src="images/game_placeholder.png" alt="tetris" title="Teris"/>
+                                <img class="img-thumbnail" src="images/tetris.png" alt="tetris" title="Teris"/>
                             </figure>
                         </a>
-                        <p>
-                            Game description for game 1
+                        <p class="game_description">
+                            In Tetris, players complete lines by moving differently shaped pieces (tetrominoes), which descend onto the playing field. The completed lines disappear and grant the player points, and the player can proceed to fill the vacated spaces. The game ends when the playing field is filled. The longer the player can delay this outcome, the higher their score will be.
                         </p>
                     </article>
                     <article class="col-sm">
                         <h3>2048</h3>
                         <a href="Games/2048.php">
                             <figure>
-                                <img class="img-thumbnail" src="images/game_placeholder.png" alt="2048" title="2048"/>
+                                <img class="img-thumbnail" src="images/2048.png" alt="2048" title="2048"/>
                             </figure>
                         </a>
-                        <p>
-                            Game description for game 2
+                        <p class="game_description">
+                            2048 is a single-player sliding tile puzzle game. The objective of the game is to slide numbered tiles on a grid to combine them to create a tile with the number 2048. Can you reach 2048?
                         </p>
                     </article>
                 </div>
@@ -49,22 +49,22 @@ and open the template in the editor.
                         <h3>Typing Test</h3>
                         <a href="Games/typingtest.php">
                             <figure>
-                                <img class="img-thumbnail" src="images/game_placeholder.png" alt="typing test" title="Typing Test"/>
+                                <img class="img-thumbnail" src="images/typingtest.png" alt="typing test" title="Typing Test"/>
                             </figure>
                         </a>
-                        <p>
-                            Game description for game 3
+                        <p class="game_description">
+                            Test your typing speed now with typing test!
                         </p>
                     </article>
                     <article class="col-sm">
                         <h3>Colour Blast</h3>
                         <a href="Games/colourblast.php">
                             <figure>
-                                <img class="img-thumbnail" src="images/game_placeholder.png" alt="colour blast" title="Color Blast"/>
+                                <img class="img-thumbnail" src="images/colourblast.png" alt="colour blast" title="Color Blast"/>
                             </figure>
                         </a>
-                        <p>
-                            Game description for game 4
+                        <p class="game_description">
+                            Colour blast is a fixed shooter game where the player tries to survive as long as possible while fighting of waves of enemies in a non-stop action packed battle.
                         </p>
 
                     </article>

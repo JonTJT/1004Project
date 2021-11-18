@@ -1,12 +1,14 @@
-<?php
-    include "head.inc.php"; 
-?> 
-<body>     
-    <?php 
-        include "nav.inc.php"; 
+<head>
+    <?php
+    include "head.inc.php";
     ?> 
- 
-    <main class="container"> 
+</head>
+<body class="body_bg">     
+    <?php
+    include "nav.inc.php";
+    ?> 
+
+    <main class="container text-white"> 
         <h1>Member Login</h1> 
         <p> 
             Existing members log in here. For new members, please go to the
@@ -26,9 +28,9 @@
             </div>
         </form> 
     </main> 
- 
-    <?php 
-        include "footer.inc.php"; 
+
+    <?php
+    include "footer.inc.php";
     ?> 
 </body> 
 

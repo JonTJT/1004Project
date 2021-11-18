@@ -15,3 +15,8 @@
 .body_bg {
     background-color: #303030;
 }
+
+.game_description {
+    text-align: justify;
+    margin-right: 1.5em;
+}
