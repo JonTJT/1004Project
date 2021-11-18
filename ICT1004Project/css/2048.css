@@ -5,6 +5,7 @@
 }
 
 h1.title {
+  color: darkorange;
   font-size: 80px;
   font-weight: bold;
   margin: 0;
@@ -45,6 +46,7 @@ h1.title {
     opacity: 0;
   }
 }
+
 .score-container {
   position: relative;
   float: right;
@@ -93,7 +95,6 @@ p {
 
 a {
   color: #776e65;
-  font-weight: bold;
   text-decoration: underline;
   cursor: pointer;
 }
@@ -110,8 +111,9 @@ hr {
 }
 
 .container {
-  width: 500px;
+  width: 500px !important;
   margin: 0 auto;
+  margin-top:2em;
 }
 
 @-webkit-keyframes fade-in {

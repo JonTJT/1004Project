@@ -1,13 +1,13 @@
 <html lang="en">
 
     <head>
-        <?php include "head.inc.php"; ?>
-        <link href="css/2048.css" rel="stylesheet" type="text/css">
-        <script defer src="js/2048.js"></script>
+        <link href="../css/2048.css" rel="stylesheet" type="text/css">
+        <script defer src="../js/2048.js"></script>
+        <?php include "../head.inc.php"; ?>
     </head>
 
-    <body>
-        <?php include "nav.inc.php"; ?>
+    <body class="body_bg">
+        <?php include "../nav.inc.php"; ?>
         <main class="container">
             
                 <div class="heading">
@@ -59,7 +59,7 @@
 
 
         </main>
-        <?php include "footer.inc.php"; ?>
+        <?php include "../footer.inc.php"; ?>
     </body>
 </html>
 

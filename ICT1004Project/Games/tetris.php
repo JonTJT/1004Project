@@ -1,16 +1,17 @@
 <html lang="en">
 
     <head>
-        <?php include "head.inc.php"; ?>
-        <link href="css/tetris.css" rel="stylesheet" type="text/css">
+        <?php include "../head.inc.php"; ?>
+        <link href="../css/tetris.css" rel="stylesheet" type="text/css">
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-        <script defer src="js/tetris.js"></script>
+        <script defer src="../js/tetris.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        
     </head>
 
-    <body onload="init()">
-        <?php include "nav.inc.php"; ?>
+    <body class="body_bg" onload="init()">
+        <?php include "../nav.inc.php"; ?>
         
         <main class="container">
         <div class="wrap">
@@ -190,7 +191,7 @@
             
         </main>
             
-        <?php include "footer.inc.php"; ?>
+        <?php include "../footer.inc.php"; ?>
     </body>
 </html>
 

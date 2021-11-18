@@ -1,13 +1,13 @@
 <html lang="en">
 
     <head>
-        <?php include "head.inc.php"; ?>
-        <link href="css/typingtest.css" rel="stylesheet" type="text/css">
-        <script defer src="js/typingtest.js"></script>
+        <?php include "../head.inc.php"; ?>
+        <link href="../css/typingtest.css" rel="stylesheet" type="text/css">
+        <script defer src="../js/typingtest.js"></script>
     </head>
 
-    <body>
-        <?php include "nav.inc.php"; ?>
+    <body class="body_bg">
+        <?php include "../nav.inc.php"; ?>
         <main class="container">
 
             <section class="test-container">
@@ -27,7 +27,7 @@
             </section>  
 
         </main>
-        <?php include "footer.inc.php"; ?>
+        <?php include "../footer.inc.php"; ?>
     </body>
 </html>
 

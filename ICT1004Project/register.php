@@ -1,6 +1,8 @@
-<?php
-    include "head.inc.php"; 
-?> 
+<head>
+    <?php
+        include "head.inc.php"; 
+    ?> 
+</head>
 <body>     
     <?php 
         include "nav.inc.php"; 
