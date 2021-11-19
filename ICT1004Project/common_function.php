@@ -1,9 +1,15 @@
 <?php
 
-$algo = PASSWORD_DEFAULT;
-
 function hash_password($password) {
-    return password_hash($password, $algo);
+    $pwd_hashed = '';
+    $pwd_hashed = password_hash($password, PASSWORD_DEFAULT);
+    return $pwd_hashed;
+}
+
+function console_log( $data ){
+  echo '<script>';
+  echo 'console.log('. json_encode( $data ) .')';
+  echo '</script>';
 }
 
 //Helper function that checks input for malicious or unwanted content. 

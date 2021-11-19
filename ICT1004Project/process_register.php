@@ -32,7 +32,6 @@
     } else
     {
         $success = false;
-        $errorMsg .= "<br>Passwords do not match.";
     }
     if ($success)
     {

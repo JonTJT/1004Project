@@ -503,7 +503,7 @@ function GameInput() {
         this.d = keys[40] || SKS("keyDown", false);
         this.dd = keydowns[32] || SKS("keyDDown", true); //space
         this.r = keydowns[38] || SKS("keyLRot", true) || SKS("keyRRot", true); //up
-        this.hold = keydowns[72] || SKS("hold", false); //h
+        this.hold = keydowns[67] || SKS("hold", false); //h
         sKeysPrev = [...sKeys];
     }
     function doTouch(e) {

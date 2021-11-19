@@ -7,10 +7,10 @@
         <script defer src="../js/tetris.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-        
+        <link href="../css/tetris.css" rel="stylesheet" type="text/css">
     </head>
 
-    <body class="body_bg" onload="init()">
+    <body class="body_bg text-white" onload="init()">
         <?php include "../nav.inc.php"; ?>
         
         <main class="container">
@@ -110,23 +110,14 @@
                 <input type="radio" name="menupick" id="mp-main" checked/>
                 <div>
                     <span>MAIN MENU</span>
-                    <label for="mp-newgame">New game</label>
+                    <label for="mp-none" onclick="startNewGame(0)">Play</label>
                     <label for="mp-options">Options</label>
-                    <label for="mp-help">Help</label>
-                </div>
-                <input type="radio" name="menupick" id="mp-newgame"/>
-                <div>
-                    <span>NEW GAME</span>
-                    <label for="mp-none" onclick="startNewGame(0)">Chill (steady speed)</label>
-                    <label for="mp-none" onclick="startNewGame(1)">Classic (accelerates)</label>
-                    <hr/>
-                    <label for="mp-main">Back</label>
+                    <label for="mp-help">Controls</label>
                 </div>
                 <input type="radio" name="menupick" id="mp-options"/>
                 <div>
                     <span>OPTIONS</span>
                     <label for="mp-sound">Sound options</label>
-                    <label for="mp-gameoptions">Game options</label>
                     <label onclick="toggleScreenkeys()">Screen keys <span class="spanON" id="skspan">ON</span></label>
                     <label onclick="toggleFullscreen()">Fullscreen <span class="spanOFF fullscreentoggle">OFF</span></label>
                     <hr/>
@@ -156,10 +147,8 @@
                 </div>
                 <input type="radio" name="menupick" id="mp-help"/>
                 <div>
-                    <span>HELP</span>
-                    <p>Complete the lines to remove them. Filling to the top means game over.</p>
-                    <p>Controls:</p>
-                    <p>Left/Right/Down - move<br/>Up - rotate<br/>Space - slam down<br/>H - hold<br/>P/Esc - Pause</p>
+                    <span>CONTROLS</span>
+                    <p>Left/Right/Down - move<br/>Up - rotate<br/>Space - slam down<br/>C - hold<br/>P/Esc - Pause</p>
                     <hr/>
                     <label for="mp-main">Back</label>
                 </div>

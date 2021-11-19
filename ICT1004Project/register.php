@@ -16,12 +16,8 @@
         </p> 
         <form action="process_register.php" method="post">
             <div class="form-group">
-                <label for="username">Username:</label>
-                <input class="form-control" type="text" id="fname" name="fname" placeholder="Enter first name"> 
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label> 
-                <input class="form-control" type="email" id="email" required name="email" placeholder="Enter email"> 
+                <label for="name">Username:</label>
+                <input class="form-control" type="text" id="name" required name="name" placeholder="Enter your username"> 
             </div>
             <div class="form-group">
                 <label for="pwd">Password:</label> 
@@ -30,12 +26,6 @@
             <div class="form-group">
                 <label for="pwd_confirm">Confirm Password:</label> 
                 <input class="form-control" type="password" id="pwd_confirm" required name="pwd_confirm"  placeholder="Confirm password"> 
-            </div>
-            <div class="form-check">
-                <label> 
-                    <input type="checkbox" required name="agree"> 
-                    Agree to terms and conditions. 
-                </label>
             </div>
             <div class="form-group">
                 <button class="btn btn-secondary" type="submit">Submit</button> 
