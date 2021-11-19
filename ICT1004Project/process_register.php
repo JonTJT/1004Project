@@ -2,13 +2,13 @@
     
     include "head.inc.php";
     include "nav.inc.php"; 
+    include "database_function.php";
+    include "common_function.php";
     $email = $errorMsg = ""; 
-    $fname = sanitize_input($_POST["fname"]);
-    $lname = sanitize_input($_POST["lname"]);
+    $username = sanitize_input($_POST["username"]);
     $pwd = $_POST["pwd"];
     $pwd_confirm = $_POST["pwd_confirm"];
     $pwd_hashed = "";
-    $algo=PASSWORD_DEFAULT;
     $success = true; 
     
     if (empty($_POST["email"])) 
@@ -28,7 +28,7 @@
     } 
     
     if ($pwd == $pwd_confirm){
-        $pwd_hashed = password_hash($pwd, $algo);
+        $pwd_hashed = hash_password($pwd);
     } else
     {
         $success = false;
@@ -36,9 +36,9 @@
     }
     if ($success)
     {
-        saveMemberToDB();
+        saveUserToDB($email,$username,$password);
     }
-    echo "<header class='register_process_header'> </header> <main class='container border-top register_process_main'> ";
+    echo "<header class='register_process_header'> </header> <main class='container border-top register_process_main body_bg'> ";
         if ($success) 
         { 
             echo "<h3>Your registration is successful!</h4>";     
@@ -52,46 +52,6 @@
             echo "<a class='btn btn-danger register_process_btn' href='register.php'>Return to Sign Up</a>";
         } 
     echo "</main>";
-
-    //Helper function that checks input for malicious or unwanted content. 
-    function sanitize_input($data) 
-    { 
-        $data = trim($data); 
-        $data = stripslashes($data);   
-        $data = htmlspecialchars($data);   
-        return $data; 
-    } 
-    /* 
- * Helper function to write the member data to the DB 
- */ 
-    function saveMemberToDB() 
-    { 
-        global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success;  
-        // Create database connection. 
-        $config = parse_ini_file('../../private/db-config.ini'); 
-        $conn = new mysqli($config['servername'], $config['username'], $config['paszsword'], $config['dbname']);  
-        // Check connection     
-        if ($conn->connect_error) 
-        { 
-            $errorMsg = "Connection failed: " . $conn->connect_error;
-            $success = false; 
-        }     
-        else 
-        { 
-            // Prepare the statement: 
-            $stmt = $conn->prepare("INSERT INTO world_of_pets_members (fname, lname, email, password) VALUES (?, ?, ?, ?)"); 
-
-            // Bind & execute the query statement: 
-            $stmt->bind_param("ssss", $fname, $lname, $email, $pwd_hashed);
-            if (!$stmt->execute()) 
-            { 
-                $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error; 
-                $success = false; 
-            } 
-            $stmt->close(); 
-        } 
-        $conn->close(); 
-    } 
 
         include "footer.inc.php"; 
 ?> 
