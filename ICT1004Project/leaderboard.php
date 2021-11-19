@@ -7,7 +7,7 @@
     <?php
     include "nav.inc.php";
     ?> 
-    <main class="container text-white"> 
+    <main class="container text-white margin_top_1"> 
         <h1>Leaderboard</h1>
     </main> 
 

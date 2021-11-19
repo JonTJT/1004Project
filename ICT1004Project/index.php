@@ -20,6 +20,7 @@ and open the template in the editor.
         <main class="container text-white">
             <section id="games">
                 <h2><u>Games</u></h2>
+                <hr>
                 <div class="row">
                     <article class="col-sm">
                         <h3>Tetris</h3>

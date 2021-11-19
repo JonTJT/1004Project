@@ -8,7 +8,7 @@
     include "nav.inc.php";
     ?> 
 
-    <main class="container text-white"> 
+    <main class="container text-white margin_top_1"> 
         <h1>Member Login</h1> 
         <p> 
             Existing members log in here. For new members, please go to the

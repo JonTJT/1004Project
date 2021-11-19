@@ -19,7 +19,7 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item">
+            <li class="nav-item margin_right_1">
                 <a href="../register.php">
                     <img src="../images/register-icon.png" alt="register">
                 </a>
