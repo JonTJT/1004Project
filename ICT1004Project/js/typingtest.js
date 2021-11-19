@@ -334,9 +334,7 @@ function init_counter(e) {
                         correct_wrds + ' WPM <br>' +
                         'Mostly correct: ' + mostly_correct + '<br>' +
                         'Fully correct: ' + fully_correct + '<br>' +
-                        'Correct letter flow: ' + letter_flow + '<br>' +
                         'Incorrect: ' + incorrect_wrd + '<br>' +
-                        'Keystrokes (excluding space and backspace): ' + letter_stroke +
                         '</p>';
             }
 

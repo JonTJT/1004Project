@@ -21,7 +21,7 @@
                     <div class="count-down">60</div>
                 </div>
 
-                <div class="result"></div>
+                <div class="result text-white"></div>
 
                 <div class="incorrect"></div>
             </section>  
