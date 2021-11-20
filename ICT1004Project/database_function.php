@@ -1,16 +1,23 @@
 <?php
 
+require __DIR__ . '/common_function.php';
+
+$CONFIRMED_STATUS = 1;
+$PENDING_STATUS = 0;
+
 function establishConnectionToDB() {
     $config = parse_ini_file('../private/db-config.ini');
     $conn = new mysqli($config['servername'], $config['username'],
-    $config['password'], $config['dbname']);
+            $config['password'], $config['dbname']);
     return $conn;
 }
 
 function saveUserToDB($name, $pwd) {
     $errorMsg = '';
+    $name = sanitize_input($name);
+
     $conn = establishConnectionToDB();
-    
+
     if ($conn->connect_error) {
         $errorMsg = "Connection to database failed: " . $conn->connect_error;
     } else {
@@ -28,7 +35,9 @@ function saveUserToDB($name, $pwd) {
 }
 
 function authenticateUser($name, $pwd) {
-    $userID = $errorMsg = '';
+    $userID = -1;
+    $name = sanitize_input($name);
+    $errorMsg = '';
     $conn = establishConnectionToDB();
 
     if ($conn->connect_error) {
@@ -41,8 +50,8 @@ function authenticateUser($name, $pwd) {
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $pwd_hashed = $row["password"];
-            // Check if the password matches:             
-            if (!password_verify($_pwd, $pwd_hashed)) {
+// Check if the password matches:
+            if (!password_verify($pwd, $pwd_hashed)) {
                 $errorMsg = "Username not found or password doesn't match...";
             } else {
                 $userID = $row["userID"];
@@ -53,7 +62,8 @@ function authenticateUser($name, $pwd) {
         $stmt->close();
     }
     $conn->close();
-    return is_numeric($userID) ? $userID : $errorMsg;
+
+    return $userID ? $userID : $errorMsg;
 }
 
 function getGameID($name) {
@@ -120,7 +130,7 @@ function getCurrentGameHighScore($userID, $gameID) {
                 . "SELECT highScore "
                 . "FROM UserGame "
                 . "WHERE userID = ? and gameID = ?");
-        $stmt->bind_param("ss", $userID, $gameID);
+        $stmt->bind_param("ii", $userID, $gameID);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -146,7 +156,7 @@ function getFriendHighScore($userID) {
                 . "FROM UserGame UG "
                 . "INNER JOIN USER U ON U.userID = UG.userID "
                 . "WHERE U.userID IN (SELECT F.userID_2 FROM Friends F WHERE F.userID_1 = ?) and U.userID = ?");
-        $stmt->bind_param("ss", $userID, $userID);
+        $stmt->bind_param("ii", $userID, $userID);
         $stmt->execute();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -171,7 +181,7 @@ function saveHighScore($userID, $gameID, $highScore) {
         $errorMsg = "Connection failed: " . $conn->connect_error;
     } else {
         $stmt = $conn->prepare("INSERT INTO UserGame (userID, gameID, highScore) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $userID, $gameID, $highScore);
+        $stmt->bind_param("iii", $userID, $gameID, $highScore);
         if (!$stmt->execute()) {
             $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
         } else {
@@ -193,7 +203,7 @@ function getAllPlayers($userID) {
         $stmt = $conn->prepare(""
                 . "SELECT name "
                 . "FROM User WHERE userID != ? ");
-        $stmt->bind_param("s", $userID);
+        $stmt->bind_param("i", $userID);
         $stmt->execute();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -215,13 +225,14 @@ function getFriends($userID) {
     if ($conn->connect_error) {
         $errorMsg = "Connection failed: " . $conn->connect_error;
     } else {
-        $stmt = $conn->prepare(""
-                . "SELECT U.name "
-                . "FROM User U"
-                . "WHERE U.name IN (SELECT * FROM Friends F WHERE userID_1 = ? OR userID_2 = ? ) "
-                . "AND U.userID = ?");
-        $stmt->bind_param("ss", $userID, $userID);
+        $stmt = $conn->prepare("SELECT U.name "
+                . "FROM User U "
+                . "WHERE U.userID IN (SELECT F.userID_2 FROM Friends F WHERE F.userID_1 = ? AND F.status = ? "
+                . "UNION "
+                . "SELECT F.userID_1 FROM Friends F WHERE F.userID_2 = ? AND F.status = ?) ");
+        $stmt->bind_param("iiii", $userID, $GLOBALS['CONFIRMED_STATUS'], $userID, $GLOBALS['CONFIRMED_STATUS']);
         $stmt->execute();
+        $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 array_push($friends, $row["name"]);
