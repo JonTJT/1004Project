@@ -17,7 +17,7 @@
         <form action="process_register.php" method="post">
             <div class="form-group">
                 <label for="name">Username:</label>
-                <input class="form-control" type="text" id="name" required name="name" placeholder="Enter your username"> 
+                <input class="form-control" type="text" id="username" required name="username" placeholder="Enter your username"> 
             </div>
             <div class="form-group">
                 <label for="pwd">Password:</label> 

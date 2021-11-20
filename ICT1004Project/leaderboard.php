@@ -14,7 +14,8 @@
         ?> 
         <main class="container text-white margin_top_1"> 
 
-            <h2>Leaderboards</h2>
+            <h1>Leaderboards</h1>
+            <hr>
             
             <div class = "leaderboard_table" id = "tetris"> 
                 

@@ -1,6 +1,7 @@
 <?php 
-    
-    include "head.inc.php";
+    echo "<head>";
+        include "head.inc.php";
+    echo "</head>";
     include "nav.inc.php"; 
     include "database_function.php";
     include "common_function.php";
