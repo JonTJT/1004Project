@@ -1,11 +1,10 @@
 <?php
 
 require __DIR__ . '/database_function.php';
-require __DIR__ . '/common_function.php';
 
 include "head.inc.php";
 include "nav.inc.php";
-$name = sanitize_input($_POST["name"]);
+$name = $_POST["name"];
 $pwd = $_POST["pwd"];
 $pwd_confirm = $_POST["pwd_confirm"];
 $pwd_hashed = "";
@@ -35,14 +34,6 @@ if ($success) {
     echo "<a class='btn btn-danger register_process_btn' href='register.php'>Return to Sign Up</a>";
 }
 echo "</main>";
-
-//Helper function that checks input for malicious or unwanted content. 
-function sanitize_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
 
 include "footer.inc.php";
 ?> 
