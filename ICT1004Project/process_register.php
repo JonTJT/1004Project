@@ -4,7 +4,7 @@ require __DIR__ . '/database_function.php';
 
 include "head.inc.php";
 include "nav.inc.php";
-$name = $_POST["name"];
+$name = $_POST["username"];
 $pwd = $_POST["pwd"];
 $pwd_confirm = $_POST["pwd_confirm"];
 $pwd_hashed = "";

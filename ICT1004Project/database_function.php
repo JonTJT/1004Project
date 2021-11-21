@@ -6,7 +6,7 @@ $CONFIRMED_STATUS = 1;
 $PENDING_STATUS = 0;
 
 function establishConnectionToDB() {
-    $config = parse_ini_file('../private/db-config.ini');
+    $config = parse_ini_file('/var/www/private/db-config.ini');
     $conn = new mysqli($config['servername'], $config['username'],
             $config['password'], $config['dbname']);
     return $conn;
@@ -50,7 +50,7 @@ function authenticateUser($name, $pwd) {
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $pwd_hashed = $row["password"];
-// Check if the password matches:
+            // Check if the password matches:
             if (!password_verify($pwd, $pwd_hashed)) {
                 $errorMsg = "Username not found or password doesn't match...";
             } else {
@@ -89,29 +89,40 @@ function getGameID($name) {
     return is_numeric($gameID) ? $gameID : $errorMsg;
 }
 
-function getAllHighScore() {
+function getHighScores($userID = 0) {
+    $gameIDList = [1, 2, 3, 4];
     $highScores = array();
-    $obj = new stdClass;
     $conn = establishConnectionToDB();
 
     if ($conn->connect_error) {
         $errorMsg = "Connection failed: " . $conn->connect_error;
     } else {
-        $stmt = $conn->prepare(""
-                . "SELECT UG.highScore, U.name AS userName, G.name AS gameName "
-                . "FROM UserGame UG, User U, Game G "
-                . "WHERE UG.userID = U.userID and UG.gameID = G.gameID");
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $obj->userName = $row["userName"];
-                $obj->gameName = $row["gameName"];
-                $obj->highScore = $row["highScore"];
-                array_push($highScores, $obj);
+        foreach ($gameIDList as $gameID) {
+            $stmt = $conn->prepare(""
+                    . "SELECT UG.highScore, U.name AS userName, G.name AS gameName "
+                    . "FROM UserGame UG "
+                    . "INNER JOIN User U ON UG.userID = U.userID "
+                    . "INNER JOIN Game G ON UG.gameID = G.gameID "
+                    . "WHERE UG.gameID = ? "
+                    . ($userID ? 'AND UG.userID = ? ' : '')
+                    . "ORDER BY UG.highScore DESC "
+                    . "LIMIT " . ($userID ? '1' : '3'));
+            if ($userID) {
+                $stmt->bind_param("ii", $gameID, $userID);
+            } else {
+                $stmt->bind_param("i", $gameID);
             }
-        } else {
-            $errorMsg = "Error...";
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $obj = new stdClass;
+                    $obj->userName = $row["userName"];
+                    $obj->gameName = $row["gameName"];
+                    $obj->highScore = $row["highScore"];
+                    array_push($highScores, $obj);
+                }
+            }
         }
         $stmt->close();
     }
@@ -129,7 +140,9 @@ function getCurrentGameHighScore($userID, $gameID) {
         $stmt = $conn->prepare(""
                 . "SELECT highScore "
                 . "FROM UserGame "
-                . "WHERE userID = ? and gameID = ?");
+                . "WHERE userID = ? and gameID = ? "
+                . "ORDER BY highScore DESC "
+                . "LIMIT 1");
         $stmt->bind_param("ii", $userID, $gameID);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -143,37 +156,7 @@ function getCurrentGameHighScore($userID, $gameID) {
     return $currentHighScore;
 }
 
-function getFriendHighScore($userID) {
-    $highScores = array();
-    $obj = new stdClass;
-    $conn = establishConnectionToDB();
-
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
-    } else {
-        $stmt = $conn->prepare(""
-                . "SELECT UG.highScore, U.name AS userName "
-                . "FROM UserGame UG "
-                . "INNER JOIN USER U ON U.userID = UG.userID "
-                . "WHERE U.userID IN (SELECT F.userID_2 FROM Friends F WHERE F.userID_1 = ?) and U.userID = ?");
-        $stmt->bind_param("ii", $userID, $userID);
-        $stmt->execute();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $obj->userName = $row["userName"];
-                $obj->highScore = $row["highScore"];
-                array_push($highScores, $obj);
-            }
-        } else {
-            $errorMsg = "Error...";
-        }
-        $stmt->close();
-    }
-    $conn->close();
-    return $highScores;
-}
-
-function saveHighScore($userID, $gameID, $highScore) {
+function saveScore($userID, $gameID, $highScore) {
     $errorMsg = '';
     $conn = establishConnectionToDB();
 
@@ -250,12 +233,42 @@ function addFriend($currentUser, $userToAdd) {
     
 }
 
-function updateFriend() {
+function updateFriendRequest() {
     
 }
 
-function deleteFriendRequest() {
+function deleteFriend() {
     
+}
+
+function getFriendHighScore($userID) {
+    $highScores = array();
+    $obj = new stdClass;
+    $conn = establishConnectionToDB();
+
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+    } else {
+        $stmt = $conn->prepare(""
+                . "SELECT UG.highScore, U.name AS userName "
+                . "FROM UserGame UG "
+                . "INNER JOIN USER U ON U.userID = UG.userID "
+                . "WHERE U.userID IN (SELECT F.userID_2 FROM Friends F WHERE F.userID_1 = ?) and U.userID = ?");
+        $stmt->bind_param("ii", $userID, $userID);
+        $stmt->execute();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $obj->userName = $row["userName"];
+                $obj->highScore = $row["highScore"];
+                array_push($highScores, $obj);
+            }
+        } else {
+            $errorMsg = "Error...";
+        }
+        $stmt->close();
+    }
+    $conn->close();
+    return $highScores;
 }
 
 ?> 

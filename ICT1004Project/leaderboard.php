@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 
+<?php
+
+require __DIR__ . '/database_function.php';
+
+$highScores = getHighScores();
+console_log($highScores);
+
+$oneUserHighScores = getHighScores(5);
+console_log($oneUserHighScores);
+?>
+
 <html lang="en">
     <head>
         <?php
