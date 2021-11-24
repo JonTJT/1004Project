@@ -133,6 +133,7 @@ var Game = {
 
 
   gameOver: function(){
+        sendhighscore(Game.score);
   	this.isGameOver = true;
   	this.clear();
   	var message = "Game Over";
@@ -198,6 +199,23 @@ if ((leftbutton !== null) && (rightbutton !== null)){
     addleftbuttonlistener(leftbutton);
     addrightbuttonlistener(rightbutton);
 }
+
+function sendhighscore(score){
+   
+ $.ajax({
+   type: "POST",
+   url: '/Games/colourblast.php',
+   data: {highScore: score},
+   success: function(){
+     console.log("Success!");
+   },
+    error: function() {
+        //this is going to happen when you send something different from a 200 OK HTTP
+        console.log("Error sending data!");
+    }
+ });
+ 
+ };
 
 function addleftbuttonlistener(colourbutton) {
         colourbutton.addEventListener("mousedown", leftbuttondown);

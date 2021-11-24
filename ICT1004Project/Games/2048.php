@@ -68,11 +68,8 @@
 require '../database_function.php';
 
 //need to get userID to replace the first parameter
-$highScore = getCurrentGameHighScore(5,2);
-console_log($highScore);
 
 $userID = $_SESSION['userID'];
-console_log($userID);
 
 if (!empty($_POST['highScore']) ) {
     console_log("success!");

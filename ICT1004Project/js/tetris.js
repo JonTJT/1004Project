@@ -345,14 +345,14 @@ function sendhighscore(score){
    
  $.ajax({
    type: "POST",
-   url: '/Games/2048.php',
-   data: {userID : 5, highScore: score},
+   url: '/Games/tetris.php',
+   data: {highScore: score},
    success: function(){
      console.log("Success!");
    },
-    error: function(textStatus, errorThrown) {
+    error: function() {
         //this is going to happen when you send something different from a 200 OK HTTP
-        alert('Ooops, something happened: ' + textStatus + ' ' +errorThrown);
+        console.log("Error sending data!");
     }
  });
  

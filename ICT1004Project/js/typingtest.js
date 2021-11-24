@@ -240,6 +240,23 @@ input.addEventListener('input', word_check);
 input.addEventListener('keyup', word_check);
 input.addEventListener('keydown', word_check);
 
+function sendhighscore(score){
+   
+ $.ajax({
+   type: "POST",
+   url: '/Games/typingtest.php',
+   data: {highScore: score},
+   success: function(){
+     console.log("Success!");
+   },
+    error: function() {
+        //this is going to happen when you send something different from a 200 OK HTTP
+        console.log("Error sending data!");
+    }
+ });
+ 
+ };
+
 // submit word and update score
 function word_submit(target, e, letters, line, word_letters, word_inner, word, letter_length, first_word, input_val, word_elem) {
     if (e.keyCode === 32 && target.value.match(/\S/) && target.value[0] !== ' ') {
@@ -311,7 +328,7 @@ function init_counter(e) {
     if (e.keyCode !== 32 || e.keyCode !== 9 || e.keyCode !== 17 || e.keyCode !== 18) {
         document.onkeydown = null;
 
-        var i = 60;
+        var i = 10;
 
         var counter_start = setInterval(() => {
             i--;
@@ -328,7 +345,7 @@ function init_counter(e) {
 
             if (i <= 0) {
                 clearInterval(counter_start);
-
+                sendhighscore(correct_wrds);
                 result.innerHTML =
                         '<p>' +
                         correct_wrds + ' WPM <br>' +

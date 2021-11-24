@@ -158,9 +158,9 @@ function sendhighscore(score){
    success: function(){
      console.log("Success!");
    },
-    error: function(textStatus, errorThrown) {
+    error: function() {
         //this is going to happen when you send something different from a 200 OK HTTP
-        alert('Ooops, something happened: ' + textStatus + ' ' +errorThrown);
+        console.log("Error sending data!");
     }
  });
  

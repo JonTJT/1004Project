@@ -31,3 +31,17 @@
     </body>
 </html>
 
+<?php 
+
+require '../database_function.php';
+
+//need to get userID to replace the first parameter
+
+$userID = $_SESSION['userID'];
+
+if (!empty($_POST['highScore']) ) {
+    console_log("success!");
+    $result = saveScore($userID, "Typing Test", $_POST['highScore']);
+}
+?>
+

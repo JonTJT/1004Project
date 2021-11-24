@@ -1,18 +1,3 @@
-<?php
-require '../database_function.php';
-
-//need to get userID to replace the first parameter
-//$errorMsg = saveScore(7, "Tetris", 20000);
-//console_log($errorMsg);
-
-if (!empty($_POST['userID']) && !empty($_POST['highScore']) ) {
-    console_log("success!");
-    $result = saveScore($_POST['userID'], "Tetris", $_POST['highScore']);
-    console_log($result);
-}
-
-?>
-
 <html lang="en">
 
     <head>
@@ -199,3 +184,19 @@ if (!empty($_POST['userID']) && !empty($_POST['highScore']) ) {
     </body>
 </html>
 
+<?php
+require '../database_function.php';
+
+//need to get userID to replace the first parameter
+//$errorMsg = saveScore(7, "Tetris", 20000);
+//console_log($errorMsg);
+
+$userID = $_SESSION['userID'];
+
+if (!empty($_POST['highScore']) ) {
+    console_log("success!");
+    $result = saveScore($userID, "Tetris", $_POST['highScore']);
+    console_log($result);
+}
+
+?>
