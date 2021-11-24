@@ -161,7 +161,7 @@ function saveScore($userID, $gameName, $highScore) {
     $conn = establishConnectionToDB();
 
     $gameID = getGameID($gameName);
-    $currentHighScore = getCurrentGameHighScore($userID,$gameID);
+    $currentHighScore = getCurrentGameHighScore($userID, $gameID);
     if (is_numeric($gameID) && $currentHighScore < $highScore) {
         if ($conn->connect_error) {
             $errorMsg = "Connection failed: " . $conn->connect_error;
@@ -201,13 +201,16 @@ function getAllPlayers($userID) {
         $errorMsg = "Connection failed: " . $conn->connect_error;
     } else {
         $stmt = $conn->prepare(""
-                . "SELECT name "
+                . "SELECT userID ,name "
                 . "FROM User WHERE userID != ? ");
         $stmt->bind_param("i", $userID);
         $stmt->execute();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                array_push($players, $row["name"]);
+                $obj = new stdClass;
+                $obj->userName = $row["name"];
+                $obj->userID = $row["userID"];
+                array_push($players, $obj);
             }
         } else {
             $errorMsg = "Error...";
