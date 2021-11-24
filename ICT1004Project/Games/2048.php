@@ -5,14 +5,6 @@ require '../database_function.php';
 //need to get userID to replace the first parameter
 $highScore = getCurrentGameHighScore(5,2);
 console_log($highScore);
-    
-    $functionid = $_POST["userID"];
-    console_log($functionid);
-    
-    if (isset($_POST['userID'])) {
-        console_log("success!");
-        //saveScore($_POST['id']);
-    }
 
 ?>
 

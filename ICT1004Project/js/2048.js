@@ -142,26 +142,26 @@ GameManager.prototype.move = function (direction) {
 
         if (!this.movesAvailable()) {
             this.over = true; // Game over!
-            sendhighscore();
+            sendhighscore(self.score);
         }
 
         this.actuate();
     }
 };
 
-function sendhighscore(){
+function sendhighscore(score){
    
  $.ajax({
    type: "POST",
-   url: '/Games/2048.php',
-   data: {userID : 5, gameID : 2, highScore: this.score},
+   url: '../database_function.php',
+   data: {userID : 5, gameID : 2, highScore: score},
    success: function(){
      console.log("Success!");
    },
-   error: function( msg )
-   {
-     alert( "Data was not saved: " + msg );
-   }
+    error: function(textStatus, errorThrown) {
+        //this is going to happen when you send something different from a 200 OK HTTP
+        alert('Ooops, something happened: ' + textStatus + ' ' +errorThrown);
+    }
  });
  
  };
