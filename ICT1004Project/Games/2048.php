@@ -5,26 +5,14 @@ require '../database_function.php';
 //need to get userID to replace the first parameter
 $highScore = getCurrentGameHighScore(5,2);
 console_log($highScore);
-
-function saveScore($userID, $gameID, $highScore) {
-    $errorMsg = '';
-    $conn = establishConnectionToDB();
-
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
-    } else {
-        $stmt = $conn->prepare("INSERT INTO UserGame (userID, gameID, highScore) VALUES (?, ?, ?)");
-        $stmt->bind_param("iii", $userID, $gameID, $highScore);
-        if (!$stmt->execute()) {
-            $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-        } else {
-            $errorMsg = "Success!";
-        }
-        $stmt->close();
+    
+    $functionid = $_POST["userID"];
+    console_log($functionid);
+    
+    if (isset($_POST['userID'])) {
+        console_log("success!");
+        //saveScore($_POST['id']);
     }
-    $conn->close();
-    return $errorMsg;
-}
 
 ?>
 

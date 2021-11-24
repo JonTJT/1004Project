@@ -155,8 +155,8 @@ function sendhighscore(){
    type: "POST",
    url: '/Games/2048.php',
    data: {userID : 5, gameID : 2, highScore: this.score},
-   success: function( msg ){
-     alert( "Data Saved: " + msg );
+   success: function(){
+     console.log("Success!");
    },
    error: function( msg )
    {
