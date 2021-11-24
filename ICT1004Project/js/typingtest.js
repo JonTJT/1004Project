@@ -328,7 +328,7 @@ function init_counter(e) {
     if (e.keyCode !== 32 || e.keyCode !== 9 || e.keyCode !== 17 || e.keyCode !== 18) {
         document.onkeydown = null;
 
-        var i = 10;
+        var i = 60;
 
         var counter_start = setInterval(() => {
             i--;
