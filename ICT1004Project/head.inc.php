@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="../css/main.css">
 
 <!--jQuery-->
+<script defer src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script defer
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -23,3 +24,6 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- Custom JS -->
 <script defer src="../js/main.js"></script>
+
+<!-- EDIT THIS PLS @DARREN -->
+<?php session_start(); ?>

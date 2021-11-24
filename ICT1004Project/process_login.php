@@ -11,8 +11,10 @@ $errorMsg = "";
 $success = true;
 
 if ($success) {
+    
     $res = authenticateUser($name, $pwd);
     if (is_numeric($res)) {
+        $_SESSION['userID'] = $res;
         $friends = getFriends($res);
     } else {
         $errorMsg = $res;

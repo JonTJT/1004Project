@@ -153,8 +153,8 @@ function sendhighscore(score){
    
  $.ajax({
    type: "POST",
-   url: '../database_function.php',
-   data: {userID : 5, gameID : 2, highScore: score},
+   url: '/Games/2048.php',
+   data: {highScore: score},
    success: function(){
      console.log("Success!");
    },

@@ -156,11 +156,6 @@ function getGameID($name) {
     return is_numeric($gameID) ? $gameID : $errorMsg;
 }
 
-if (!empty($_POST['userID']) && !empty($_POST['gameID']) && !empty($_POST['highScore']) ) {
-    console_log("success!");
-    saveScore($_POST['userID'], $_POST['gameID'], $_POST['highScore']);
-}
-
 function saveScore($userID, $gameName, $highScore) {
     $errorMsg = '';
     $conn = establishConnectionToDB();

@@ -1,13 +1,3 @@
-<?php 
-
-require '../database_function.php';
-
-//need to get userID to replace the first parameter
-$highScore = getCurrentGameHighScore(5,2);
-console_log($highScore);
-
-?>
-
 <html lang="en">
 
     <head>
@@ -72,4 +62,23 @@ console_log($highScore);
         <?php include "../footer.inc.php"; ?>
     </body>
 </html>
+
+<?php 
+
+require '../database_function.php';
+
+//need to get userID to replace the first parameter
+$highScore = getCurrentGameHighScore(5,2);
+console_log($highScore);
+
+$userID = $_SESSION['userID'];
+console_log($userID);
+
+if (!empty($_POST['highScore']) ) {
+    console_log("success!");
+    $result = saveScore($userID, "2048", $_POST['highScore']);
+    console_log($result);
+}
+
+?>
 
