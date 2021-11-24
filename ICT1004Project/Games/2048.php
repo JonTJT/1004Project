@@ -71,7 +71,7 @@ require '../database_function.php';
 
 $userID = $_SESSION['userID'];
 
-if (!empty($_POST['highScore']) ) {
+if (!empty($userID) && !empty($_POST['highScore']) ) {
     console_log("success!");
     $result = saveScore($userID, "2048", $_POST['highScore']);
     console_log($result);
