@@ -2,8 +2,8 @@
 require '../database_function.php';
 
 //need to get userID to replace the first parameter
-$errorMsg = saveScore(7, "Tetris", 20000);
-console_log($errorMsg);
+//$errorMsg = saveScore(7, "Tetris", 20000);
+//console_log($errorMsg);
 ?>
 
 <html lang="en">

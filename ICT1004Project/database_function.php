@@ -228,7 +228,7 @@ function getFriends($userID) {
     if ($conn->connect_error) {
         $errorMsg = "Connection failed: " . $conn->connect_error;
     } else {
-        $stmt = $conn->prepare("SELECT U.name "
+        $stmt = $conn->prepare("SELECT U.name, U.userID "
                 . "FROM User U "
                 . "WHERE U.userID IN (SELECT F.userID_2 FROM Friends F WHERE F.userID_1 = ? AND F.status = ? "
                 . "UNION "
@@ -238,10 +238,11 @@ function getFriends($userID) {
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                array_push($friends, $row["name"]);
+                $obj = new stdClass;
+                $obj->userName = $row["name"];
+                $obj->userID = $row["userID"];
+                array_push($friends, $obj);
             }
-        } else {
-            $errorMsg = "Error...";
         }
         $stmt->close();
     }
@@ -249,8 +250,65 @@ function getFriends($userID) {
     return $friends;
 }
 
-function addFriend($currentUser, $userToAdd) {
-    
+function getFriendRequests($userID) {
+    $friendRequests = array();
+    $conn = establishConnectionToDB();
+
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+    } else {
+        $stmt = $conn->prepare("SELECT U.name, U.userID "
+                . "FROM User U "
+                . "WHERE U.userID IN (SELECT F.userID_2 FROM Friends F WHERE F.userID_1 = ? AND F.status = ? "
+                . "UNION "
+                . "SELECT F.userID_1 FROM Friends F WHERE F.userID_2 = ? AND F.status = ?) ");
+        $stmt->bind_param("iiii", $userID, $GLOBALS['$PENDING_STATUS'], $userID, $GLOBALS['$PENDING_STATUS']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $obj = new stdClass;
+                $obj->userName = $row["name"];
+                $obj->userID = $row["userID"];
+                array_push($friendRequests, $obj);
+            }
+        }
+        $stmt->close();
+    }
+    $conn->close();
+    return $friendRequests;
+}
+
+function addFriend($currentUserID, $userIDToAdd) {
+    $errorMsg = '';
+    $addUser = 0;
+    $conn = establishConnectionToDB();
+    $friendRequests = getFriendRequests($currentUserID);
+    if ($conn->connect_error) {
+        $errorMsg = "Connection to database failed: " . $conn->connect_error;
+    } else {
+
+        foreach($friendRequests as $friend) {
+            if($friend -> userID != $userIDToAdd){
+                $addUser = 1;
+            }
+        }
+
+        if ($addUser) {
+            $stmt = $conn->prepare("INSERT INTO Friends (userID_1, userID_2, status) VALUES (?, ?, ?)");
+            $stmt->bind_param("iii", $currentUserID, $userIDToAdd, $GLOBALS['PENDING_STATUS']);
+            if (!$stmt->execute()) {
+                $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            } else {
+                $errorMsg = "Friend request sent!";
+            }
+            $stmt->close();
+        }else{
+            $errorMsg = "Friend request already sent";
+        }
+    }
+    $conn->close();
+    return $errorMsg;
 }
 
 function updateFriendRequest() {
