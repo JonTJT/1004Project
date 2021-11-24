@@ -66,29 +66,6 @@ function authenticateUser($name, $pwd) {
     return $userID ? $userID : $errorMsg;
 }
 
-function getGameID($name) {
-    $gameID = $errorMsg = '';
-    $conn = establishConnectionToDB();
-
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
-    } else {
-        $stmt = $conn->prepare("SELECT * FROM Game WHERE name=?");
-        $stmt->bind_param("s", $name);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $gameID = $row["gameID"];
-        } else {
-            $errorMsg = "Game not found...";
-        }
-        $stmt->close();
-    }
-    $conn->close();
-    return is_numeric($gameID) ? $gameID : $errorMsg;
-}
-
 function getHighScores($userID = 0) {
     $gameIDList = [1, 2, 3, 4];
     $highScores = array();
@@ -156,22 +133,62 @@ function getCurrentGameHighScore($userID, $gameID) {
     return $currentHighScore;
 }
 
-function saveScore($userID, $gameID, $highScore) {
-    $errorMsg = '';
+function getGameID($name) {
+    $gameID = $errorMsg = '';
     $conn = establishConnectionToDB();
 
     if ($conn->connect_error) {
         $errorMsg = "Connection failed: " . $conn->connect_error;
     } else {
-        $stmt = $conn->prepare("INSERT INTO UserGame (userID, gameID, highScore) VALUES (?, ?, ?)");
-        $stmt->bind_param("iii", $userID, $gameID, $highScore);
-        if (!$stmt->execute()) {
-            $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+        $stmt = $conn->prepare("SELECT * FROM Game WHERE name=?");
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $gameID = $row["gameID"];
         } else {
-            $errorMsg = "Success!";
+            $errorMsg = "Game not found...";
         }
         $stmt->close();
     }
+    $conn->close();
+    return is_numeric($gameID) ? $gameID : $errorMsg;
+}
+
+function saveScore($userID, $gameName, $highScore) {
+    $errorMsg = '';
+    $conn = establishConnectionToDB();
+
+    $gameID = getGameID($gameName);
+    $currentHighScore = getCurrentGameHighScore($userID,$gameID);
+    if (is_numeric($gameID) && $currentHighScore < $highScore) {
+        if ($conn->connect_error) {
+            $errorMsg = "Connection failed: " . $conn->connect_error;
+        } else {
+            // delete old record
+            $stmt = $conn->prepare("DELETE FROM UserGame WHERE userID = ? AND gameID = ?");
+            $stmt->bind_param("ii", $userID, $gameID);
+            if (!$stmt->execute()) {
+                $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            } else {
+                $errorMsg = "Success!";
+            }
+            $stmt->close();
+            // insert new record
+            $stmt = $conn->prepare("INSERT INTO UserGame (userID, gameID, highScore) VALUES (?, ?, ?)");
+            $stmt->bind_param("iii", $userID, $gameID, $highScore);
+            if (!$stmt->execute()) {
+                $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            } else {
+                $errorMsg = "Success!";
+            }
+            $stmt->close();
+        }
+    } else {
+        $errorMsg = $gameID;
+    }
+
     $conn->close();
     return $errorMsg;
 }
