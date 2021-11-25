@@ -29,6 +29,11 @@
                     <img src="../images/login-icon.png" alt="login">
                 </a>
             </li>
+            <li class="nav-item" style=""<?php if($_SESSION['userLoginStatus']) echo'display:block;';else'display:none;'?>>
+                <a href="../process_logout.php">
+                    <img src="../images/login-icon.png" alt="login">
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

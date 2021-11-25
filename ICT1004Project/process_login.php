@@ -15,6 +15,7 @@ if ($success) {
     $res = authenticateUser($name, $pwd);
     if (is_numeric($res)) {
         $_SESSION['userID'] = $res;
+        $_SESSION['userLoginStatus'] = TRUE;
         $friends = getFriends($res);
     } else {
         $errorMsg = $res;
