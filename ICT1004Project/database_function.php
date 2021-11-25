@@ -456,34 +456,19 @@ function deleteFriend($currentUserID, $userIDToDelete) {
 }
 
 function getFriendHighScore($userID) {
-    $highScores = array();
+    $friendHighScores = array();
     $obj = new stdClass;
-    $conn = establishConnectionToDB();
-
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
-    } else {
-        $stmt = $conn->prepare(""
-                . "SELECT UG.highScore, U.name AS userName "
-                . "FROM UserGame UG "
-                . "INNER JOIN USER U ON U.userID = UG.userID "
-                . "WHERE U.userID IN (SELECT F.userID_2 FROM Friends F WHERE F.userID_1 = ?) and U.userID = ?");
-        $stmt->bind_param("ii", $userID, $userID);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $obj->userName = $row["userName"];
-                $obj->highScore = $row["highScore"];
-                array_push($highScores, $obj);
-            }
-        } else {
-            $errorMsg = "Error...";
+    
+    $friends = getFriends($userID);
+    foreach($friends as $friend){
+        $friendID = $friend->userID;
+        $highScores = getHighScores($friendID);
+        foreach($highScores as $highScore){
+            array_push($friendHighScores,$highScore);
         }
-        $stmt->close();
     }
-    $conn->close();
-    return $highScores;
+    
+    return $friendHighScores;
 }
 
 ?> 
