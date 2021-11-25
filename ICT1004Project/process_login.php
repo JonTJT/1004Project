@@ -26,7 +26,7 @@ if ($success) {
     echo "<h3>Login successful!</h4>";
     echo "<h4>Welcome back, " . $name . ".<br>";
 //    echo "<a class='btn btn-success register_process_btn' href='index.php'>Return to Home</a>";
-    header("refresh:0;url=zebra_session.php");
+    header("refresh:2;url=zebra_session.php");
     echo "<h4> Please wait to be redirected...</h4>";
 } else {
     echo "<h3>Oops!";

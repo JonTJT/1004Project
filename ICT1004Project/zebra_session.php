@@ -6,7 +6,4 @@ header("refresh:0;url=index.php");
     // include the Zebra_Session class
     require __DIR__ . '/zebra_function.php';
     $session = new Zebra_Session($link, 'sEcUr1tY_c0dE');
-    print_r('<pre>');
-    print_r($_SESSION);
-    print_r('</pre>');
 ?>
