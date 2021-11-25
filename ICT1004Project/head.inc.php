@@ -26,4 +26,7 @@
 <script defer src="../js/main.js"></script>
 
 <!-- EDIT THIS PLS @DARREN -->
-<?php session_start(); ?>
+
+<?php session_start(); 
+require __DIR__ . '/zebra_function.php';
+?>

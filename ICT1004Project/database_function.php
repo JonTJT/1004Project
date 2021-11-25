@@ -11,6 +11,32 @@ function establishConnectionToDB() {
             $config['password'], $config['dbname']);
     return $conn;
 }
+function checkUserInDB($name){
+    $name = sanitize_input($name);
+    $errorMsg = '';
+    $conn = establishConnectionToDB();
+    $exists = 0;
+
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+    } else {
+        $stmt = $conn->prepare("SELECT * FROM User WHERE name=?");
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+//            $row = $result->fetch_assoc();
+//            $pwd_hashed = $row["password"];
+//            $name = $row["userID"];
+            $exists = 1;
+        } else {
+            $exists = 0;
+        }
+        $stmt->close();
+    }
+    $conn->close();
+    return $exists;
+}
 
 function saveUserToDB($name, $pwd) {
     $errorMsg = '';
