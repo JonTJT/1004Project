@@ -49,7 +49,7 @@ GameManager.prototype.addStartTiles = function () {
 // Adds a tile in a random position
 GameManager.prototype.addRandomTile = function () {
     if (this.grid.cellsAvailable()) {
-        var value = Math.random() < 0.9 ? 2 : 4;
+        var value = Math.random() < 0.9 ? 128 : 256;
         var tile = new Tile(this.grid.randomAvailableCell(), value);
 
         this.grid.insertTile(tile);
@@ -155,9 +155,6 @@ function sendhighscore(score){
    type: "POST",
    url: '/Games/2048.php',
    data: {highScore: score},
-   success: function(){
-     console.log("Success!");
-   },
     error: function() {
         //this is going to happen when you send something different from a 200 OK HTTP
         console.log("Error sending data!");

@@ -1,9 +1,9 @@
 <html lang="en">
 
     <head>
+        <?php include "../head.inc.php"; ?>
         <link href="../css/2048.css" rel="stylesheet" type="text/css">
         <script defer src="../js/2048.js"></script>
-        <?php include "../head.inc.php"; ?>
     </head>
 
     <body class="body_bg">

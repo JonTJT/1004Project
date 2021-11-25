@@ -110,10 +110,10 @@
                     <input type="radio" name="menupick" id="mp-main" checked/>
                     <div>
                         <span>MAIN MENU</span>
-                        <label for="mp-none" onclick="startNewGame(0)">Play</label>
+                        <label for="mp-none" onclick="startNewGame(1)">Play</label>
                         <label for="mp-options">Options</label>
-                        <label for="mp-help">Controls</label>
-                    </div>
+                        <label for="mp-help">Controls</label> 
+                   </div>
                     <input type="radio" name="menupick" id="mp-options"/>
                     <div>
                         <span>OPTIONS</span>

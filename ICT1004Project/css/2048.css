@@ -407,12 +407,48 @@ hr {
 .tile.tile-2048 {
   color: #f9f6f2;
   background: #edc22e;
-  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
+  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33334);
   font-size: 35px;
+}
+.tile.tile-4096 {
+  color: #f9f6f2;
+  background: #6699ff;
+  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.65556), inset 0 0 0 1px rgba(255, 255, 255, 0.36333);
+  font-size: 35px;
+}
+.tile.tile-8192 {
+  color: #f9f6f2;
+  background: #3366ff;
+  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.68556), inset 0 0 0 1px rgba(255, 255, 255, 0.39333);
+  font-size: 35px;
+}
+.tile.tile-16384 {
+  color: #f9f6f2;
+  background: #0066cc;
+  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.72556), inset 0 0 0 1px rgba(255, 255, 255, 0.42333);
+  font-size: 25px;
+}
+.tile.tile-32768 {
+  color: #f9f6f2;
+  background: #0099cc;
+  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.74556), inset 0 0 0 1px rgba(255, 255, 255, 0.45333);
+  font-size: 25px;
 }
 @media screen and (max-width: 480px) {
   .tile.tile-2048 {
     font-size: 15px;
+  }
+    .tile.tile-4096 {
+    font-size: 15px;
+  }
+    .tile.tile-8192 {
+    font-size: 15px;
+  }
+    .tile.tile-16384 {
+    font-size: 5px;
+  }
+    .tile.tile-32768 {
+    font-size: 5px;
   }
 }
 

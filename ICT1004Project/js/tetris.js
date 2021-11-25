@@ -184,7 +184,6 @@ function init() {
     function pluspt(x) {
         return x > 0 ? x : 0;
     }
-    console.log("init");
     document.getElementById("mp-main").click();
     document.addEventListener('fullscreenchange', correctFullscreen);
     setTimeout(correctFullscreen, 100);
@@ -309,10 +308,6 @@ function updateInfo(n, i) {
 
 function startNewGame(gameType) {
     preventbuttonscroll();
-    if (gameType == 0)
-        console.log("Started chill game...");
-    if (gameType == 1)
-        console.log("Started classic game!");
     paused = false;
     game = new Game(gameType);
     gameOn = true;
@@ -347,9 +342,6 @@ function sendhighscore(score){
    type: "POST",
    url: '/Games/tetris.php',
    data: {highScore: score},
-   success: function(){
-     console.log("Success!");
-   },
     error: function() {
         //this is going to happen when you send something different from a 200 OK HTTP
         console.log("Error sending data!");
