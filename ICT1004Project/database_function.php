@@ -11,7 +11,8 @@ function establishConnectionToDB() {
             $config['password'], $config['dbname']);
     return $conn;
 }
-function checkUserInDB($name){
+
+function checkUserInDB($name) {
     $name = sanitize_input($name);
     $errorMsg = '';
     $conn = establishConnectionToDB();
@@ -219,6 +220,36 @@ function saveScore($userID, $gameName, $highScore) {
     return $errorMsg;
 }
 
+function getPlayers($name) {
+    $players = array();
+    $conn = establishConnectionToDB();
+    $name = "%" . $name . "%";
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+    } else {
+        $stmt = $conn->prepare(""
+                . "SELECT userID ,name "
+                . "FROM User "
+                . "WHERE name LIKE ? ");
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $obj = new stdClass;
+                $obj->userName = $row["name"];
+                $obj->userID = $row["userID"];
+                array_push($players, $obj);
+            }
+        } else {
+            $errorMsg = "Error...";
+        }
+        $stmt->close();
+    }
+    $conn->close();
+    return $players;
+}
+
 function getAllPlayers($userID) {
     $players = array();
     $conn = establishConnectionToDB();
@@ -231,6 +262,7 @@ function getAllPlayers($userID) {
                 . "FROM User WHERE userID != ? ");
         $stmt->bind_param("i", $userID);
         $stmt->execute();
+        $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $obj = new stdClass;
@@ -314,8 +346,8 @@ function addFriend($currentUserID, $userIDToAdd) {
         $errorMsg = "Connection to database failed: " . $conn->connect_error;
     } else {
 
-        foreach($friendRequests as $friend) {
-            if($friend -> userID != $userIDToAdd){
+        foreach ($friendRequests as $friend) {
+            if ($friend->userID != $userIDToAdd) {
                 $addUser = 1;
             }
         }
@@ -329,7 +361,7 @@ function addFriend($currentUserID, $userIDToAdd) {
                 $errorMsg = "Friend request sent!";
             }
             $stmt->close();
-        }else{
+        } else {
             $errorMsg = "Friend request already sent";
         }
     }
@@ -337,34 +369,62 @@ function addFriend($currentUserID, $userIDToAdd) {
     return $errorMsg;
 }
 
-function updateFriendRequest() {
-    
-}
-
-function deleteFriend() {
-    
-}
-
-function getFriendHighScore($userID) {
-    $highScores = array();
-    $obj = new stdClass;
+function updateFriendRequest($currentUserID, $userIDToAdd) {
+    $errorMsg = '';
     $conn = establishConnectionToDB();
-
     if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
+        $errorMsg = "Connection to database failed: " . $conn->connect_error;
     } else {
-        $stmt = $conn->prepare(""
-                . "SELECT UG.highScore, U.name AS userName "
-                . "FROM UserGame UG "
-                . "INNER JOIN USER U ON U.userID = UG.userID "
-                . "WHERE U.userID IN (SELECT F.userID_2 FROM Friends F WHERE F.userID_1 = ?) and U.userID = ?");
-        $stmt->bind_param("ii", $userID, $userID);
+        $stmt = $conn->prepare("UPDATE Friends SET status = ? WHERE userID_1 = ? AND userID_2 = ?");
+        $stmt->bind_param("iii", $GLOBALS['CONFIRMED_STATUS'], $userIDToAdd, $currentUserID);
+        if (!$stmt->execute()) {
+            $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+        } else {
+            $errorMsg = "Friend request accepted!";
+        }
+        $stmt->close();
+    }
+    $conn->close();
+    return $errorMsg;
+}
+
+function deleteFriendRequest($currentUserID, $userIDToDelete) {
+    $errorMsg = '';
+    $conn = establishConnectionToDB();
+    if ($conn->connect_error) {
+        $errorMsg = "Connection to database failed: " . $conn->connect_error;
+    } else {
+        $stmt = $conn->prepare("DELETE FROM Friends WHERE userID_1 = ? AND userID_2 = ?");
+        $stmt->bind_param("ii", $currentUserID, $userIDToDelete);
+        if (!$stmt->execute()) {
+            $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+        } else {
+            $errorMsg = "Friend request deleted!";
+        }
+        $stmt->close();
+    }
+    $conn->close();
+    return $errorMsg;
+}
+
+function getFriendID($currentUserID, $userIDToDelete) {
+    $friendID = 0;
+    $conn = establishConnectionToDB();
+    if ($conn->connect_error) {
+        $errorMsg = "Connection to database failed: " . $conn->connect_error;
+    } else {
+        $stmt = $conn->prepare("" .
+                "SELECT friendID " .
+                "FROM Friends F WHERE F.userID_1 = ? AND F.userID_2 = ? AND F.status = 1 " .
+                "UNION " .
+                "SELECT friendID " .
+                "FROM Friends F WHERE F.userID_1 = ? AND F.userID_2 = ? AND F.status = 1");
+        $stmt->bind_param("iiii", $currentUserID, $userIDToDelete, $userIDToDelete, $currentUserID);
         $stmt->execute();
+        $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $obj->userName = $row["userName"];
-                $obj->highScore = $row["highScore"];
-                array_push($highScores, $obj);
+                $friendID = $row["friendID"];
             }
         } else {
             $errorMsg = "Error...";
@@ -372,7 +432,43 @@ function getFriendHighScore($userID) {
         $stmt->close();
     }
     $conn->close();
-    return $highScores;
+    return $friendID;
+}
+
+function deleteFriend($currentUserID, $userIDToDelete) {
+    $errorMsg = '';
+    $conn = establishConnectionToDB();
+    $friendID = getFriendID($currentUserID, $userIDToDelete);
+    if ($conn->connect_error) {
+        $errorMsg = "Connection to database failed: " . $conn->connect_error;
+    } else {
+        $stmt = $conn->prepare("DELETE FROM Friends WHERE friendID = ?");
+        $stmt->bind_param("i", $friendID);
+        if (!$stmt->execute()) {
+            $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+        } else {
+            $errorMsg = "Friend deleted!";
+        }
+        $stmt->close();
+    }
+    $conn->close();
+    return $errorMsg;
+}
+
+function getFriendHighScore($userID) {
+    $friendHighScores = array();
+    $obj = new stdClass;
+    
+    $friends = getFriends($userID);
+    foreach($friends as $friend){
+        $friendID = $friend->userID;
+        $highScores = getHighScores($friendID);
+        foreach($highScores as $highScore){
+            array_push($friendHighScores,$highScore);
+        }
+    }
+    
+    return $friendHighScores;
 }
 
 ?> 
