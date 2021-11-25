@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/database_function.php';
+$_SESSION['userLoginStatus'] = FALSE;
 session_start();
 session_unset();
 session_destroy();

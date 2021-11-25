@@ -29,11 +29,16 @@
                     <img src="../images/login-icon.png" alt="login">
                 </a>
             </li>
-            <li class="nav-item" style=""<?php if($_SESSION['userLoginStatus']) echo'display:block;';else'display:none;'?>>
+            <?php 
+            session_start();
+            if(!is_null($_SESSION['userID'])):
+            ?>
+            <li class="nav-item">
                 <a href="../process_logout.php">
                     <img src="../images/login-icon.png" alt="login">
                 </a>
             </li>
+            <?php            endif;?>
         </ul>
     </div>
 </nav>
