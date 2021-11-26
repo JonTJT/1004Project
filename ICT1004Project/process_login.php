@@ -8,20 +8,9 @@ $name = sanitize_input($_POST["name"]);
 $pwd = $_POST["pwd"];
 $pwd_hashed = "";
 $errorMsg = "";
-$success = true;
+$success = false;
 
-if ($success) {
-    
-    $res = authenticateUser($name, $pwd);
-    if (is_numeric($res)) {
-        $_SESSION['userID'] = $res;
-        $_SESSION['userLoginStatus'] = TRUE;
-        $friends = getFriends($res);
-    } else {
-        $errorMsg = $res;
-        $success = false;
-    }
-}
+
 echo "<header class='register_process_header'> </header> <main class='container border-top register_process_main'> ";
 if ($success) {
     echo "<h3>Login successful!</h4>";
@@ -35,6 +24,20 @@ if ($success) {
     echo "<p>" . $errorMsg . "</p>";
     echo "<a class='btn btn-warning register_process_btn' href='login.php'>Return to Login</a>";
 }
+
+if ($success) {
+    
+    $res = authenticateUser($name, $pwd);
+    if (is_numeric($res)) {
+        $_SESSION['userID'] = $res;
+        $_SESSION['userLoginStatus'] = TRUE;
+        $friends = getFriends($res);
+    } else {
+        $errorMsg = $res;
+        $success = false;
+    }
+}
+
 echo "</main>";
 
 include "footer.inc.php";

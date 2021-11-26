@@ -9,6 +9,16 @@ $pwd = $_POST["pwd"];
 $pwd_confirm = $_POST["pwd_confirm"];
 $pwd_hashed = "";
 $success = true;
+$exists = false;
+
+$exists = checkUserInDB($name);
+console_log($exists);
+if($exists){
+    $success = false;
+    echo "<h3>Oops! User already exists!</h3>";
+    echo "<h4>Click on the button below to login!</h4>";
+    echo "<a class='btn btn-success register_process_btn' href='login.php'>Log-in</a>";
+}
 
 if ($pwd == $pwd_confirm) {
     $pwd_hashed = hash_password($pwd);
@@ -21,14 +31,6 @@ if ($success) {
     if (!substr($errorMsg, 0, 5) === "Thank") {
         $success = false;
     }
-}
-$exists = checkUserInDB($name);
-console_log($exists);
-if($exists){
-    $success = false;
-    echo "<h3>Oops! User already exists!</h3>";
-    echo "<h4>Click on the button below to login!</h4>";
-    echo "<a class='btn btn-success register_process_btn' href='login.php'>Log-in</a>";
 }
 
 if(!$exists){

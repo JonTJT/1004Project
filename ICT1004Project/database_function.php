@@ -16,7 +16,7 @@ function checkUserInDB($name) {
     $name = sanitize_input($name);
     $errorMsg = '';
     $conn = establishConnectionToDB();
-    $exists = 0;
+    $exists = FALSE;
 
     if ($conn->connect_error) {
         $errorMsg = "Connection failed: " . $conn->connect_error;
@@ -29,9 +29,9 @@ function checkUserInDB($name) {
 //            $row = $result->fetch_assoc();
 //            $pwd_hashed = $row["password"];
 //            $name = $row["userID"];
-            $exists = 1;
+            $exists = TRUE;
         } else {
-            $exists = 0;
+            $exists = FALSE;
         }
         $stmt->close();
     }
