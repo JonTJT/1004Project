@@ -10,7 +10,6 @@ $pwd_hashed = "";
 $errorMsg = "";
 $success = false;
 
-
 echo "<header class='register_process_header'> </header> <main class='container border-top register_process_main'> ";
 if ($success) {
     echo "<h3>Login successful!</h4>";
@@ -26,10 +25,11 @@ if ($success) {
 }
 
 if ($success) {
-    
+
     $res = authenticateUser($name, $pwd);
     if (is_numeric($res)) {
-        $_SESSION['userID'] = $res;
+        $_SESSION['userID'] = $res->userID;
+        $_SESSION['userName'] = $res->userName;
         $_SESSION['userLoginStatus'] = TRUE;
         $friends = getFriends($res);
     } else {

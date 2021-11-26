@@ -62,7 +62,8 @@ function saveUserToDB($name, $pwd) {
 }
 
 function authenticateUser($name, $pwd) {
-    $userID = -1;
+    $obj = new stdClass;
+    $arr = (array) $obj;
     $name = sanitize_input($name);
     $errorMsg = '';
     $conn = establishConnectionToDB();
@@ -81,7 +82,8 @@ function authenticateUser($name, $pwd) {
             if (!password_verify($pwd, $pwd_hashed)) {
                 $errorMsg = "Username not found or password doesn't match...";
             } else {
-                $userID = $row["userID"];
+                $obj->userID = $row["userID"];
+                $obj->userName = $row["name"];
             }
         } else {
             $errorMsg = "Username not found or password doesn't match...";
@@ -90,7 +92,7 @@ function authenticateUser($name, $pwd) {
     }
     $conn->close();
 
-    return $userID ? $userID : $errorMsg;
+    return !$arr ? $obj : $errorMsg;
 }
 
 function getHighScores($userID = 0) {
@@ -457,17 +459,16 @@ function deleteFriend($currentUserID, $userIDToDelete) {
 
 function getFriendHighScore($userID) {
     $friendHighScores = array();
-    $obj = new stdClass;
-    
+
     $friends = getFriends($userID);
-    foreach($friends as $friend){
+    foreach ($friends as $friend) {
         $friendID = $friend->userID;
         $highScores = getHighScores($friendID);
-        foreach($highScores as $highScore){
-            array_push($friendHighScores,$highScore);
+        foreach ($highScores as $highScore) {
+            array_push($friendHighScores, $highScore);
         }
     }
-    
+
     return $friendHighScores;
 }
 
