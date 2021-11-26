@@ -16,7 +16,7 @@ function checkUserInDB($name) {
     $name = sanitize_input($name);
     $errorMsg = '';
     $conn = establishConnectionToDB();
-    $exists = FALSE;
+    $exists = TRUE;
 
     if ($conn->connect_error) {
         $errorMsg = "Connection failed: " . $conn->connect_error;

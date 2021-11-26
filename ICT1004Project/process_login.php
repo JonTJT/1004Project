@@ -8,14 +8,15 @@ $name = sanitize_input($_POST["name"]);
 $pwd = $_POST["pwd"];
 $pwd_hashed = "";
 $errorMsg = "Username or password is incorrect!";
-$success = false;
+$success = FALSE;
 
 $success = checkUserInDB($name);
 
 if ($success) {
 
     $res = authenticateUser($name, $pwd);
-    if (is_numeric($res)) {
+    console_log($res);
+    if (!is_string($res)) {
         $_SESSION['userID'] = $res->userID;
         $_SESSION['userName'] = $res->userName;
         $_SESSION['userLoginStatus'] = TRUE;
@@ -39,8 +40,6 @@ if ($success) {
     echo "<p>" . $errorMsg . "</p>";
     echo "<a class='btn btn-warning register_process_btn' href='login.php'>Return to Login</a>";
 }
-
-
 
 echo "</main>";
 
