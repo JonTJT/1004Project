@@ -29,26 +29,24 @@ console_log($oneUserHighScores);
 
 
             <h3>Tetris</h3>
-            <?php ?>
-            <table class="table table-striped table-dark table-hover">
+            <table class="table   table-dark table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Username</th>
                         <th scope="col" class="text-center">High Score</th>
                     </tr>
+                </thead>
+                <tbody>
                     <?php
                     $i = 1;
                     foreach ($highScores as $key => $highscore) {
                         if (strcmp($highscore->gameName, "Tetris") == 0) {
-                            echo "<tr> <td>" . $i . "</td><td>" . $highscore->userName . "</td><td class='text-center'>" . $highscore->highScore . "</td></tr>";
+                            echo "<tr class='clickable-row' data-href='./profile.php?" . $highscore->$userName . "'><td>" . $i . "</td><td>" . $highscore->userName . "</td><td class='text-center'>" . $highscore->highScore . "</td></tr>";
                             $i++;
                         }
                     }
                     ?>
-                </thead>
-                <tbody>
-
                 </tbody>
             </table>
 
@@ -57,25 +55,24 @@ console_log($oneUserHighScores);
 
             <h3>2048</h3>
 
-            <table class="table table-striped table-dark table-hover">
+            <table class="table   table-dark table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Username</th>
                         <th scope="col" class="text-center">High Score</th>
                     </tr>
+                </thead>
+                <tbody>
                     <?php
                     $i = 1;
                     foreach ($highScores as $key => $highscore) {
                         if (strcmp($highscore->gameName, "2048") == 0) {
-                            echo "<tr> <td>" . $i . "</td><td>" . $highscore->userName . "</td><td class='text-center'>" . $highscore->highScore . "</td></tr>";
+                            echo "<tr class='clickable-row' data-href='./profile.php?" . $highscore->$userName . "'><td>" . $i . "</td><td>" . $highscore->userName . "</td><td class='text-center'>" . $highscore->highScore . "</td></tr>";
                             $i++;
                         }
                     }
                     ?>
-                </thead>
-                <tbody>
-
                 </tbody>
             </table>
 
@@ -84,47 +81,47 @@ console_log($oneUserHighScores);
 
             <h3>Typing Test</h3>
 
-            <table class="table table-striped table-dark table-hover">
+            <table class="table   table-dark table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Username</th>
                         <th scope="col" class="text-center">High Score</th>
-                    </tr>
+                    </tr>                     
+                </thead>
+                <tbody>
                     <?php
                     $i = 1;
                     foreach ($highScores as $key => $highscore) {
                         if (strcmp($highscore->gameName, "Typing Test") == 0) {
-                            echo "<tr> <td>" . $i . "</td><td>" . $highscore->userName . "</td><td class='text-center'>" . $highscore->highScore . " WPM</td></tr>";
+                            echo "<tr class='clickable-row' data-href='./profile.php?" . $highscore->$userName . "'><td>" . $i . "</td><td>" . $highscore->userName . "</td><td class='text-center'>" . $highscore->highScore . " WPM</td></tr>";
                             $i++;
                         }
                     }
-                    ?>                        
-                </thead>
-                <tbody>
+                    ?>   
                 </tbody>
             </table>
 
             <h3>Colour Blast</h3>
 
-            <table class="table table-striped table-dark table-hover">
+            <table class="table   table-dark table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Username</th>
                         <th scope="col" class="text-center">High Score</th>
-                    </tr>
+                    </tr>                     
+                </thead>
+                <tbody>
                     <?php
                     $i = 1;
                     foreach ($highScores as $key => $highscore) {
                         if (strcmp($highscore->gameName, "Colour Blast") == 0) {
-                            echo "<tr> <td>" . $i . "</td><td>" . $highscore->userName . "</td><td class='text-center'>" . $highscore->highScore . "</td></tr>";
+                            echo "<tr class='clickable-row' data-href='./profile.php?" . $highscore->$userName . "'><td>" . $i . "</td><td>" . $highscore->userName . "</td><td class='text-center'>" . $highscore->highScore . "</td></tr>";
                             $i++;
                         }
                     }
-                    ?>                        
-                </thead>
-                <tbody>
+                    ?>   
                 </tbody>
             </table>
 

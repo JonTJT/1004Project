@@ -29,3 +29,8 @@
     text-align: justify;
     margin-right: 1.5em;
 }
+
+.table-hover > tbody > tr:hover {
+  background-color: #999999;
+  cursor: pointer;
+}
