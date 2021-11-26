@@ -7,7 +7,7 @@ include "nav.inc.php";
 $name = sanitize_input($_POST["name"]);
 $pwd = $_POST["pwd"];
 $pwd_hashed = "";
-$errorMsg = "";
+$errorMsg = "Username or password is incorrect!";
 $success = false;
 
 $success = checkUserInDB($name);
@@ -21,7 +21,7 @@ if ($success) {
         $_SESSION['userLoginStatus'] = TRUE;
         $friends = getFriends($res);
     } else {
-        $errorMsg = $res;
+        $errorMsg = "Username or password is incorrect!";
         $success = false;
     }
 }
