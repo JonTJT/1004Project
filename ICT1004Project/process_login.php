@@ -9,10 +9,11 @@ $pwd = $_POST["pwd"];
 $pwd_hashed = "";
 $errorMsg = "Username or password is incorrect!";
 $success = FALSE;
+$check = FALSE;
 
-$success = checkUserInDB($name);
+$check = checkUserInDB($name);
 
-if ($success) {
+if ($check) {
 
     $res = authenticateUser($name, $pwd);
     console_log($res);
