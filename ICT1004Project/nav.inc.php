@@ -22,8 +22,14 @@
                 <a class='nav-link' href='../profile.php?playername=".$playername."'>Profile</a>
             </li>";
             ?>
-
         </ul>
+
+        
+        <!-- if user is logged in -->    
+        <?php
+        //console_log($playername);
+            if (is_null($_SESSION['userName'])):
+                ?>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item margin_right_1">
                 <a href="../register.php">
@@ -35,15 +41,24 @@
                     <img src="../images/login-icon.png" alt="login">
                 </a>
             </li>
-            <?php
-            if (!is_null($_SESSION['userID'])):
+         </ul>   
+                
+            <?php else: ?>
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">   
+            
+            <li class="nav-item margin_right_1">
+                <?php
+                echo "<a>".$playername."</a>";
                 ?>
-                <li class="nav-item">
-                    <a href="../process_logout.php">
-                        <img src="../images/login-icon.png" alt="login">
-                    </a>
-                </li>
-            <?php endif; ?>
+                
+            
+            <li class="nav-item">
+                <a href="../process_logout.php">
+                    <img src="../images/login-icon.png" alt="login">
+                </a>
+            </li>
+            <?php endif ?>
+                
         </ul>
     </div>
 </nav>
