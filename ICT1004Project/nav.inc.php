@@ -14,9 +14,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="../social.php">Social</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../profile.php">Profile</a>
-            </li>
+            <?php
+            session_start();
+            $playername = $_SESSION["userName"];
+            echo
+            "<li class='nav-item'>
+                <a class='nav-link' href='../profile.php?playername=".$playername."'>Profile</a>
+            </li>";
+            ?>
+
         </ul>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item margin_right_1">
@@ -29,16 +35,15 @@
                     <img src="../images/login-icon.png" alt="login">
                 </a>
             </li>
-            <?php 
-            session_start();
-            if(!is_null($_SESSION['userID'])):
-            ?>
-            <li class="nav-item">
-                <a href="../process_logout.php">
-                    <img src="../images/login-icon.png" alt="login">
-                </a>
-            </li>
-            <?php            endif;?>
+            <?php
+            if (!is_null($_SESSION['userID'])):
+                ?>
+                <li class="nav-item">
+                    <a href="../process_logout.php">
+                        <img src="../images/login-icon.png" alt="login">
+                    </a>
+                </li>
+            <?php endif; ?>
         </ul>
     </div>
 </nav>
