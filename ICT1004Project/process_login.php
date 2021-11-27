@@ -22,12 +22,15 @@ if ($check) {
         $_SESSION['userName'] = $res->userName;
         $_SESSION['userLoginStatus'] = TRUE;
         $friends = getFriends($res);
+        
     } else {
-        $errorMsg = "Username or password is incorrect!";
-        $success = false;
+        $errorMsg = "Username or password is incorrect! Res string empty";
+        $success = FALSE;
     }
 }
-
+if(!is_null($_SESSION['userName'])){
+    $success = TRUE;
+}
 echo "<header class='register_process_header'> </header> <main class='container border-top register_process_main'> ";
 if ($success) {
     echo "<h3>Login successful!</h4>";
