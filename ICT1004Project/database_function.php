@@ -95,6 +95,29 @@ function authenticateUser($name, $pwd) {
     return !$arr ? $obj : $errorMsg;
 }
 
+function getUserName($userID) {
+    $userName = $errorMsg = '';
+    $conn = establishConnectionToDB();
+
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+    } else {
+        $stmt = $conn->prepare("SELECT * FROM User WHERE userID=?");
+        $stmt->bind_param("i", $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $userName = $row["name"];
+        } else {
+            $errorMsg = "User not found...";
+        }
+        $stmt->close();
+    }
+    $conn->close();
+    return $userName ? $userName : $errorMsg;
+}
+
 function getHighScores($userID = 0) {
     $gameIDList = [1, 2, 3, 4];
     $highScores = array();
@@ -317,19 +340,21 @@ function getFriendRequests($userID) {
     if ($conn->connect_error) {
         $errorMsg = "Connection failed: " . $conn->connect_error;
     } else {
-        $stmt = $conn->prepare("SELECT U.name, U.userID "
-                . "FROM User U "
-                . "WHERE U.userID IN (SELECT F.userID_2 FROM Friends F WHERE F.userID_1 = ? AND F.status = ? "
-                . "UNION "
-                . "SELECT F.userID_1 FROM Friends F WHERE F.userID_2 = ? AND F.status = ?) ");
-        $stmt->bind_param("iiii", $userID, $GLOBALS['PENDING_STATUS'], $userID, $GLOBALS['PENDING_STATUS']);
+        $stmt = $conn->prepare("SELECT F.userID_1 AS 'senderID', U1.name AS 'senderName', F.userID_2 AS 'receiverID', U2.name AS 'receiverName' "
+                . "FROM Friends F "
+                . "INNER JOIN User U1 on U1.userID = F.userID_1 "
+                . "INNER JOIN User U2 on U2.userID = F.userID_2 "
+                . "WHERE F.status = ? AND (F.userID_1 = ? OR F.userID_2 = ?) ");
+        $stmt->bind_param("iii", $GLOBALS['PENDING_STATUS'], $userID, $userID);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $obj = new stdClass;
-                $obj->userName = $row["name"];
-                $obj->userID = $row["userID"];
+                $obj->senderID = $row["senderID"];
+                $obj->senderName = $row["senderName"];
+                $obj->receiverID = $row["receiverID"];
+                $obj->receiverName = $row["receiverName"];
                 array_push($friendRequests, $obj);
             }
         }
