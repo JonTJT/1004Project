@@ -4,6 +4,7 @@ require __DIR__ . '/common_function.php';
 
 $CONFIRMED_STATUS = 1;
 $PENDING_STATUS = 0;
+$NOT_FRIEND_STATUS = -1;
 
 function establishConnectionToDB() {
     $config = parse_ini_file('/var/www/private/db-config.ini');
@@ -356,6 +357,28 @@ function getFriends($userID) {
     return $friends;
 }
 
+function isFriends($userID1, $userID2) {
+    $isFriend = -1;
+    $conn = establishConnectionToDB();
+
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+    } else {
+        $stmt = $conn->prepare("SELECT status FROM Friends F "
+                . "WHERE (F.userID_1 = ? AND F.userID_2 = ?) OR (F.userID_1 = ? AND F.userID_2 = ?) ");
+        $stmt->bind_param("iiii", $userID1, $userID2, $userID2, $userID1);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $isFriend = $row["status"];
+        }
+        $stmt->close();
+    }
+    $conn->close();
+    return $isFriend;
+}
+
 function getFriendRequests($userID) {
     $friendRequests = array();
     $conn = establishConnectionToDB();
@@ -389,16 +412,17 @@ function getFriendRequests($userID) {
 
 function addFriend($currentUserID, $userIDToAdd) {
     $errorMsg = '';
-    $addUser = 0;
+    $addUser = 1;
     $conn = establishConnectionToDB();
     $friendRequests = getFriendRequests($currentUserID);
+    console_log($friendRequests);
     if ($conn->connect_error) {
         $errorMsg = "Connection to database failed: " . $conn->connect_error;
     } else {
 
         foreach ($friendRequests as $friend) {
-            if ($friend->userID != $userIDToAdd) {
-                $addUser = 1;
+            if ($friend->senderID == $userIDToAdd || $friend->receiverID == $userIDToAdd) {
+                $addUser = 0;
             }
         }
 
