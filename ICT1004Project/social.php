@@ -35,7 +35,7 @@ and open the template in the editor.
                     <label for="playername">Search player name:</label>
                     <input class="form-control" type="text" id="playername" required name="playername" placeholder="Enter player name you would like to search for"> 
                 </div>
-
+            </form>
                 <table class="table table-dark table-hover">
                     <thead>
                         <tr>
@@ -45,15 +45,11 @@ and open the template in the editor.
                         </tr>
                     </thead>
                     <tbody>
-
                         <?php
                         $i = 1;
-                        $totalpages = ceil(count($players) / 20);
                         console_log($players);
                         foreach ($players as $key => $player) {
-                            
                             if ($player->userID != $userID && $i < 21) {
-                                console_log($player->userName);
                                 echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $player->userName . "'><td>" . $i . "</td><td>" . $player->userName . "</td><td class='text-right'><form action='social.php' method='post'><button type='submit' name='addfriend' value='" . $player->userID . "'> Add Friend </button></form></td></tr>";
                                 $i++;
                             }
@@ -68,7 +64,6 @@ and open the template in the editor.
                 <?php
                 include "footer.inc.php";
                 ?> 
-            </form>
         </main> 
 
 
