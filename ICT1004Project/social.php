@@ -36,34 +36,46 @@ and open the template in the editor.
                     <input class="form-control" type="text" id="playername" required name="playername" placeholder="Enter player name you would like to search for"> 
                 </div>
             </form>
-                <table class="table table-dark table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Username</th>
-                            <th scope="col" class="text-right"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $i = 1;
-                        console_log($players);
-                        foreach ($players as $key => $player) {
-                            if ($player->userID != $userID && $i < 21) {
-                                echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $player->userName . "'><td>" . $i . "</td><td>" . $player->userName . "</td><td class='text-right'><form action='social.php' method='post'><button type='submit' name='addfriend' value='" . $player->userID . "'> Add Friend </button></form></td></tr>";
-                                $i++;
+            <table class="table table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col" class="text-right"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $i = 1;
+                    foreach ($players as $key => $player) {
+                        $isfriend = isFriends($userID, $player->userID);
+                        if ($player->userID != $userID && $i < 21) {
+                            switch ($isfriend) {
+                                case -1:
+                                    echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $player->userName . "'><td>" . $i . "</td><td>" . $player->userName . "</td><td class='text-right'><form action='?' method='post'><button type='submit' name='addfriend' value='" . $player->userID . "'> Add Friend </button></form></td></tr>";
+                                    $i++;
+                                    break;
+                                case 0:
+                                    echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $player->userName . "'><td>" . $i . "</td><td>" . $player->userName . "</td><td class='text-right'>Friend request pending</td></tr>";
+                                    $i++;
+                                    break;
+                                case 1:
+                                    echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $player->userName . "'><td>" . $i . "</td><td>" . $player->userName . "</td><td class='text-right'></td></tr>";
+                                    $i++;
+                                    break;
                             }
-                        }
-                        ?>
+                    }
+                    }
+                    ?>
 
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
 
-                <?php ?>
+            <?php ?>
 
-                <?php
-                include "footer.inc.php";
-                ?> 
+            <?php
+            include "footer.inc.php";
+            ?> 
         </main> 
 
 

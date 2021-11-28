@@ -16,7 +16,6 @@ and open the template in the editor.
     require 'database_function.php';
 
     $userID = $_SESSION['userID'];
-
     $friendrequests = getFriendRequests($userID);
     $friends = getFriends($userID);
     ?>
@@ -28,22 +27,18 @@ and open the template in the editor.
             <?php
             if (!empty($_POST['deletefriend'])) {
                 $result = deleteFriend($userID, $_POST['deletefriend']);
-                console_log($result);
                 echo "<script type='text/javascript'>alert('Friend deleted!');</script>";
                 echo "<meta http-equiv='refresh' content='0'>";
             } elseif (!empty($_POST['acceptfriend'])) {
                 $result = updateFriendRequest($userID, $_POST['acceptfriend']);
-                console_log($result);
                 echo "<script type='text/javascript'>alert('Friend request accepted!');</script>";
                 echo "<meta http-equiv='refresh' content='0'>";
             } elseif (!empty($_POST['rejectfriend'])) {
                 $result = deleteFriendRequest($_POST['rejectfriend'], $userID);
-                console_log($result);
                 echo "<script type='text/javascript'>alert('Friend request rejected!');</script>";
                 echo "<meta http-equiv='refresh' content='0'>";
             } elseif (!empty($_POST['cancelfriend'])) {
                 $result = deleteFriendRequest($userID, $_POST['cancelfriend']);
-                console_log($result);
                 echo "<script type='text/javascript'>alert('Friend request cancelled!');</script>";
                 echo "<meta http-equiv='refresh' content='0'>";
             }
@@ -55,7 +50,6 @@ and open the template in the editor.
                 <thead>
                     <tr>
                         <th scope="col">Username</th>
-                        <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -85,7 +79,7 @@ and open the template in the editor.
                     foreach ($friendrequests as $key => $friendrequest) {
                         if ($friendrequest->senderID != $userID) {
                             echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $friendrequest->senderName . "'><td>" . $friendrequest->senderName . "</td><td class='text-right'><form action='friends.php' method='post'>"
-                            . "<button type='submit' name='acceptfriend' value='" . $friend->userID . "'> Accept Friend </button>"
+                            . "<button type='submit' name='acceptfriend' value='" . $friendrequest->senderID . "'> Accept Friend </button>"
                             . "</form></td><td class='text-right'><form action='friends.php' method='post'><button type='submit' name='rejectfriend' value='" . $friendrequest->senderID . "'> Reject Friend Request</button></form></td></tr>";
                         }
                     }
