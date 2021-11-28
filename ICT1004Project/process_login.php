@@ -7,20 +7,29 @@ include "nav.inc.php";
 $name = sanitize_input($_POST["name"]);
 $pwd = $_POST["pwd"];
 $pwd_hashed = "";
-$errorMsg = "";
-$success = true;
+$errorMsg = "Username or password is incorrect!";
+$success = FALSE;
+$check = FALSE;
 
-if ($success) {
-    
+$check = checkUserInDB($name);
+
+if ($check) {
+
     $res = authenticateUser($name, $pwd);
-    if (is_numeric($res)) {
-        $_SESSION['userID'] = $res;
+    console_log($res);
+    if (!is_string($res)) {
+        $_SESSION['userID'] = $res->userID;
+        $_SESSION['userName'] = $res->userName;
         $_SESSION['userLoginStatus'] = TRUE;
         $friends = getFriends($res);
+        
     } else {
-        $errorMsg = $res;
-        $success = false;
+        $errorMsg = "Username or password is incorrect! Res string empty";
+        $success = FALSE;
     }
+}
+if(!is_null($_SESSION['userName'])){
+    $success = TRUE;
 }
 echo "<header class='register_process_header'> </header> <main class='container border-top register_process_main'> ";
 if ($success) {
@@ -35,6 +44,7 @@ if ($success) {
     echo "<p>" . $errorMsg . "</p>";
     echo "<a class='btn btn-warning register_process_btn' href='login.php'>Return to Login</a>";
 }
+
 echo "</main>";
 
 include "footer.inc.php";

@@ -16,7 +16,7 @@ function checkUserInDB($name) {
     $name = sanitize_input($name);
     $errorMsg = '';
     $conn = establishConnectionToDB();
-    $exists = 0;
+    $exists = TRUE;
 
     if ($conn->connect_error) {
         $errorMsg = "Connection failed: " . $conn->connect_error;
@@ -29,9 +29,9 @@ function checkUserInDB($name) {
 //            $row = $result->fetch_assoc();
 //            $pwd_hashed = $row["password"];
 //            $name = $row["userID"];
-            $exists = 1;
+            $exists = TRUE;
         } else {
-            $exists = 0;
+            $exists = FALSE;
         }
         $stmt->close();
     }
@@ -62,7 +62,8 @@ function saveUserToDB($name, $pwd) {
 }
 
 function authenticateUser($name, $pwd) {
-    $userID = -1;
+    $obj = new stdClass;
+    $arr = (array) $obj;
     $name = sanitize_input($name);
     $errorMsg = '';
     $conn = establishConnectionToDB();
@@ -81,7 +82,8 @@ function authenticateUser($name, $pwd) {
             if (!password_verify($pwd, $pwd_hashed)) {
                 $errorMsg = "Username not found or password doesn't match...";
             } else {
-                $userID = $row["userID"];
+                $obj->userID = $row["userID"];
+                $obj->userName = $row["name"];
             }
         } else {
             $errorMsg = "Username not found or password doesn't match...";
@@ -90,7 +92,7 @@ function authenticateUser($name, $pwd) {
     }
     $conn->close();
 
-    return $userID ? $userID : $errorMsg;
+    return !$arr ? $obj : $errorMsg;
 }
 
 function getHighScores($userID = 0) {
@@ -320,7 +322,7 @@ function getFriendRequests($userID) {
                 . "WHERE U.userID IN (SELECT F.userID_2 FROM Friends F WHERE F.userID_1 = ? AND F.status = ? "
                 . "UNION "
                 . "SELECT F.userID_1 FROM Friends F WHERE F.userID_2 = ? AND F.status = ?) ");
-        $stmt->bind_param("iiii", $userID, $GLOBALS['$PENDING_STATUS'], $userID, $GLOBALS['$PENDING_STATUS']);
+        $stmt->bind_param("iiii", $userID, $GLOBALS['PENDING_STATUS'], $userID, $GLOBALS['PENDING_STATUS']);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -457,17 +459,16 @@ function deleteFriend($currentUserID, $userIDToDelete) {
 
 function getFriendHighScore($userID) {
     $friendHighScores = array();
-    $obj = new stdClass;
-    
+
     $friends = getFriends($userID);
-    foreach($friends as $friend){
+    foreach ($friends as $friend) {
         $friendID = $friend->userID;
         $highScores = getHighScores($friendID);
-        foreach($highScores as $highScore){
-            array_push($friendHighScores,$highScore);
+        foreach ($highScores as $highScore) {
+            array_push($friendHighScores, $highScore);
         }
     }
-    
+
     return $friendHighScores;
 }
 
