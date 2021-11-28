@@ -16,7 +16,8 @@ and open the template in the editor.
     require 'database_function.php';
 
     $userID = $_SESSION['userID'];
-
+    $getparameter = $_GET['playername'];
+    console_log($getparameter);
     if (!empty($_GET['playername'])) {
         $playername = $_GET['playername'];
         $players = getPlayers($playername);
@@ -52,7 +53,7 @@ and open the template in the editor.
                         if ($player->userID != $userID && $i < 21) {
                             switch ($isfriend) {
                                 case -1:
-                                    echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $player->userName . "'><td>" . $i . "</td><td>" . $player->userName . "</td><td class='text-right'><form action='?' method='post'><button type='submit' name='addfriend' value='" . $player->userID . "'> Add Friend </button></form></td></tr>";
+                                    echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $player->userName . "'><td>" . $i . "</td><td>" . $player->userName . "</td><td class='text-right'><form action='./social.php?playername=" . $getparameter . "' method='post'><button type='submit' name='addfriend' value='" . $player->userID . "'> Add Friend </button></form></td></tr>";
                                     $i++;
                                     break;
                                 case 0:
@@ -64,10 +65,9 @@ and open the template in the editor.
                                     $i++;
                                     break;
                             }
-                    }
+                        }
                     }
                     ?>
-
                 </tbody>
             </table>
 

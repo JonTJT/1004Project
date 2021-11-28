@@ -46,6 +46,7 @@ and open the template in the editor.
 
             <h1>Friend List</h1>
             <hr>
+            <div class="table-wrapper-scroll-y scrollbar">
             <table class="table table-dark table-hover">
                 <thead>
                     <tr>
@@ -56,6 +57,7 @@ and open the template in the editor.
                 <tbody>
 
                     <?php
+                    $i = 1;
                     foreach ($friends as $key => $friend) {
                         echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $friend->userName . "'><td>" . $friend->userName . "</td><td class='text-right'><form action='friends.php' method='post'><button type='submit' name='deletefriend' value='" . $friend->userID . "'> Delete Friend </button></form></td></tr>";
                     }
@@ -63,9 +65,12 @@ and open the template in the editor.
 
                 </tbody>
             </table>
-
+            </div>
+            
             <h1>Pending Friend Requests</h1>
+            
             <hr>
+            <div class="table-wrapper-scroll-y scrollbar">
             <table class="table table-dark table-hover">
                 <thead>
                     <tr>
@@ -87,29 +92,34 @@ and open the template in the editor.
 
                 </tbody>
             </table>
-
+            </div>
+            
             <h1>Sent Friend Requests</h1>
-            <hr>
-            <table class="table table-dark table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Username</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
 
-                    <?php
-                    foreach ($friendrequests as $key => $friendrequest) {
-                        if ($friendrequest->senderID == $userID) {
-                            echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $friendrequest->receiverName . "'><td>" . $friendrequest->receiverName . "</td><td class='text-right'><form action='friends.php' method='post'><button type='submit' name='cancelfriend' value='" . $friendrequest->receiverID . "'> Cancel Friend Request</button></form></td></tr>";
+            
+                <hr>
+                <div class="table-wrapper-scroll-y scrollbar">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Username</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php
+                        foreach ($friendrequests as $key => $friendrequest) {
+                            if ($friendrequest->senderID == $userID) {
+                                echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $friendrequest->receiverName . "'><td>" . $friendrequest->receiverName . "</td><td class='text-right'><form action='friends.php' method='post'><button type='submit' name='cancelfriend' value='" . $friendrequest->receiverID . "'> Cancel Friend Request</button></form></td></tr>";
+                            }
                         }
-                    }
-                    ?>
+                        ?>
 
-                </tbody>
-            </table>
-
+                    </tbody>
+                </table>
+            </div>
+            
             <?php
             include "footer.inc.php";
             ?> 
