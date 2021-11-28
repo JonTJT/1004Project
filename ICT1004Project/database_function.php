@@ -2,9 +2,8 @@
 
 require __DIR__ . '/common_function.php';
 
-$CONFIRMED_STATUS = 1;
-$PENDING_STATUS = 0;
-$NOT_FRIEND_STATUS = -1;
+$GLOBALS['CONFIRMED_STATUS'] = 1;
+$GLOBALS['PENDING_STATUS'] = 0;
 
 function establishConnectionToDB() {
     $config = parse_ini_file('/var/www/private/db-config.ini');
