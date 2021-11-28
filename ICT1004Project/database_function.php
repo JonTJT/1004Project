@@ -322,7 +322,7 @@ function getFriendRequests($userID) {
                 . "WHERE U.userID IN (SELECT F.userID_2 FROM Friends F WHERE F.userID_1 = ? AND F.status = ? "
                 . "UNION "
                 . "SELECT F.userID_1 FROM Friends F WHERE F.userID_2 = ? AND F.status = ?) ");
-        $stmt->bind_param("iiii", $userID, $GLOBALS['$PENDING_STATUS'], $userID, $GLOBALS['$PENDING_STATUS']);
+        $stmt->bind_param("iiii", $userID, $GLOBALS['PENDING_STATUS'], $userID, $GLOBALS['PENDING_STATUS']);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
