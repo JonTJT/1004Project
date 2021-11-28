@@ -118,6 +118,29 @@ function getUserName($userID) {
     return $userName ? $userName : $errorMsg;
 }
 
+function getUserID($userName) {
+    $userID = $errorMsg = '';
+    $conn = establishConnectionToDB();
+
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+    } else {
+        $stmt = $conn->prepare("SELECT * FROM User WHERE name=?");
+        $stmt->bind_param("i", $userName);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $userID = $row["userID"];
+        } else {
+            $errorMsg = "User not found...";
+        }
+        $stmt->close();
+    }
+    $conn->close();
+    return $userID ? $userID : $errorMsg;
+}
+
 function getHighScores($userID = 0) {
     $gameIDList = [1, 2, 3, 4];
     $highScores = array();
