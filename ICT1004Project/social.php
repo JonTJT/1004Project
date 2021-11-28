@@ -49,11 +49,12 @@ and open the template in the editor.
                         <?php
                         $i = 1;
                         $totalpages = ceil(count($players) / 20);
-                        console_log($totalpages);
-                        foreach ($players as $key => $userName) {
-                            if ($userName->userID != $userID && $i < 21) {
-                                echo "<tr class='clickable-row' data-href='./profile.php?" . $userName->userName . "'><td>" . $i . "</td><td>" . $userName->userName . "</td><td class='text-right'>Add friend</td></tr>";
-                                addFriend($currentUserID, $userIDToAdd);
+                        console_log($players);
+                        foreach ($players as $key => $player) {
+                            
+                            if ($player->userID != $userID && $i < 21) {
+                                console_log($player->userName);
+                                echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $player->userName . "'><td>" . $i . "</td><td>" . $player->userName . "</td><td class='text-right'><form action='social.php' method='post'><button type='submit' name='addfriend' value='" . $player->userID . "'> Add Friend </button></form></td></tr>";
                                 $i++;
                             }
                         }
@@ -61,7 +62,9 @@ and open the template in the editor.
 
                     </tbody>
                 </table>
-                
+
+                <?php ?>
+
                 <?php
                 include "footer.inc.php";
                 ?> 
@@ -71,3 +74,10 @@ and open the template in the editor.
 
     </body> 
 </html>
+
+<?php
+if (!empty($_POST['addfriend'])) {
+    $result = addFriend($userID, $_POST['addfriend']);
+    echo "<script type='text/javascript'>alert('Friend request sent!');</script>";
+}
+?>

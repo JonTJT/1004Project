@@ -34,3 +34,12 @@
   background-color: #999999;
   cursor: pointer;
 }
+
+.friendtable{
+ height:400px;
+}
+tbody{
+  overflow-y: scroll;      
+  height: 300px;           
+  width: 100%;
+}

@@ -19,46 +19,52 @@
             $playername = $_SESSION["userName"];
             echo
             "<li class='nav-item'>
-                <a class='nav-link' href='../profile.php?playername=".$playername."'>Profile</a>
+                <a class='nav-link' href='../profile.php?playername=" . $playername . "'>Profile</a>
             </li>";
+            if (!is_null($_SESSION['userName'])) {
+                echo
+                "<li class='nav-item'>
+                <a class='nav-link' href='friends.php'>Friends</a>
+            </li>";
+            }
             ?>
         </ul>
 
-        
+
         <!-- if user is logged in -->    
         <?php
         //console_log($playername);
-            if (is_null($_SESSION['userName'])):
-                ?>
-        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item margin_right_1">
-                <a href="../register.php">
-                    <img src="../images/register-icon.png" alt="register">
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="../login.php">
-                    <img src="../images/login-icon.png" alt="login">
-                </a>
-            </li>
-         </ul>   
-                
-            <?php else: ?>
-        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">   
-            
-            <li class="nav-item margin_right_1">
-                <?php
-                echo "<a>".$playername."</a>";
-                ?>
-                
-            
-            <li class="nav-item">
-                <a href="../process_logout.php">
-                    <img src="../images/login-icon.png" alt="login">
-                </a>
-            </li>
+        if (is_null($_SESSION['userName'])):
+            ?>
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item margin_right_1">
+                    <a href="../register.php">
+                        <img src="../images/register-icon.png" alt="register">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../login.php">
+                        <img src="../images/login-icon.png" alt="login">
+                    </a>
+                </li>
+            </ul>   
+
+        <?php else: ?>
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">   
+
+                <li class="nav-item margin_right_1">
+                    <?php
+                    echo "<a>" . $playername . "</a>";
+                    ?>
+
+
+                <li class="nav-item">
+                    <a href="../process_logout.php">
+                        <img src="../images/login-icon.png" alt="login">
+                    </a>
+                </li>
             <?php endif ?>
-                
+
         </ul>
     </div>
 </nav>
