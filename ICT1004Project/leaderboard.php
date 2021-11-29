@@ -94,7 +94,7 @@ console_log($oneUserHighScores);
                     $i = 1;
                     foreach ($highScores as $key => $highscore) {
                         if (strcmp($highscore->gameName, "Typing Test") == 0) {
-                            echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $highscore->userName . "'><td>" . $i . "</td><td>" . $highscore->userName . "</td><td class='text-center'>" . $highscore->highScore . " WPM</td></tr>";
+                            echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $highscore->userName . "'><td>" . $i . "</td><td>" . $highscore->userName . "</td><td class='text-center'>" . $highscore->highScore . " </td></tr>";
                             $i++;
                         }
                     }

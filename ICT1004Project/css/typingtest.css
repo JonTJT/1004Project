@@ -1,99 +1,29 @@
-body {
-  font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif;  
-}
-
-.test-container {
-  width: 900px;
-  height: 500px;
-  position: relative;
-  margin: 0 auto;
-}
-.timer {
-  width: 100%;
-  height: 3px;
-  background-color: #55b1fc;
-  top: 0;
-  left: 0;
-  transition: .2s;
-}
-.output {
-  font-size: 25px;
-  position: relative;
-  font-weight: bold;
-  color: #fff;
-  width: 100%;
-  margin: 0 auto;
-  height: 100px;
-  overflow: hidden;
-  margin-top: 60px;
-  line-height: 25px;
-  padding: 10px 0;
-  background-color: #1b1e21;
-}
-.word {
-  margin-bottom: 5px;
-}
-.word,
-.word-letter{
-  position: relative;
-  transition: .2s;
-}
-.word-letter-anim::before {
-  position: absolute;
-  content: '';
-  background-color: rgba(85, 177, 252, .2);
-  width: 100%;
-  height: 0;
-  left: 0;
-  bottom: 0;
-  animation: grow .2s 1;
-}
-@keyframes grow {
-  0% {
-  }
-  100% {
-    height: 100%;
-  }
-}
-.word-input {
-  display: flex;
-  color: #202326;
-  border: 1px solid #1b1e21;
-}
-.refresh {
-  outline: none;
-  border: none;
-  background-color: #55b1fc;
-  font-size: 20px;
-  color: #fff;
-  padding: 5px;
-  cursor: pointer;
-  flex: 1;
-  transition: .2s;
-}
-.word-line {
-  padding-bottom: 8px;
-  width: calc(100% - 12px);
-  margin: 0 auto;
-}
-.type-word {
-  flex: 15;
-  width: calc(100% - 70px);
-  border: none;
-  padding: 5px;
-  outline: none;
-  background-color: #151719;
-  font-size: 25px;
-  font-weight: bold;
-  color: #344354;
-}
-.count-down {
-  flex: 1;
-  text-align: center;
-  line-height: 50px;
-  vertical-align: middle;
-  background-color: #151719;
-  font-size: 14px;
-  color: #fff;
-}
-
+    header{
+        text-align: center;
+        color: white;
+        background-color: midnightblue;
+        padding: 30px;
+    }
+    .lead{
+        text-align: center;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+    h2{
+        text-align: center;
+        padding: 0 0 20px 0;
+    }
+    .jumbotron{
+        text-align: center;
+    }
+  h3{
+        text-align: center;
+        float: initial;
+    }
+    #message{
+        color: red;
+        text-align: center;
+        font-size: 50px;
+        font-weight: 700;
+        padding: 20px;
+    }

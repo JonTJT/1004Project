@@ -13,7 +13,7 @@
 
             <div class="container">
                 <div class="game-wrap">
-                    <canvas width="960px" height="540" id="game"></canvas>
+                    <canvas width="960" height="540" id="game"></canvas>
                     <article class="content">
                         <div class="buttons" id="screenkeys">
                             <div id="keyLeft" >
