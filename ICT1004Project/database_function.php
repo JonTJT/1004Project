@@ -126,7 +126,7 @@ function getUserID($userName) {
         $errorMsg = "Connection failed: " . $conn->connect_error;
     } else {
         $stmt = $conn->prepare("SELECT * FROM User WHERE name=?");
-        $stmt->bind_param("i", $userName);
+        $stmt->bind_param("s", $userName);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {

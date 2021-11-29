@@ -9,6 +9,16 @@ require 'database_function.php';
 
 $userID = $_SESSION['userID'];
 $userName = $_SESSION['userName'];
+
+if (!empty($_POST['addfriend'])) {
+    $result = addFriend($userID, $_POST['addfriend']);
+    echo "<script type='text/javascript'>alert('Friend request sent!');</script>";
+    echo "<meta http-equiv='refresh' content='0'>";
+} else if (!empty($_POST['deletefriend'])) {
+    $result = deleteFriend($userID, $_POST['deletefriend']);
+    echo "<script type='text/javascript'>alert('Friend deleted!');</script>";
+    echo "<meta http-equiv='refresh' content='0'>";
+}
 ?>
 <body class="body_bg">     
     <main class='container text-white margin_top_1'> 
@@ -17,86 +27,107 @@ $userName = $_SESSION['userName'];
         <section>
             <?php
             if (!empty($userName)) {
-                console_log("check user in db retuns ->" . checkUserInDB($name));
                 if (!empty($_GET['playername'])) {
                     $playername = $_GET['playername'];
+                    if ($playername == $userName) {
+                        $isOwnProfile = 1;
+                    } else {
+                        $isOwnProfile = 0;
+                    }
                     // Check whether the playername exists in the DB
                     if (checkUserInDB($playername)) {
-                        echo "<h4>Name: " . $playername . "</h4>";
-                        if ($playername != $userName) {
+                        echo "<div class='profile_head'> <h4>Name: " . $playername . "</h4>";
+                        if (!$isOwnProfile) {
                             // Means that user is logged in and looking at other persons profile
                             // check if friends with this person, if not, render add friends button
                             // run DB function to get this person's UserID, save it to the $userID variable
                             // Run getHighScores and getFriends functions for this user
-                            console_log($userName . " checking other person profile");
                             // Use the $userID variable to check if this person is friends with the logged in person
                             // Render the add friend, isfriend or friend request pending button accordingly
                             $playerID = getUserID($playername);
+                            $isFriend = isFriends($userID, $playerID);
+                            switch ($isFriend) {
+                                case -1:
+                                    echo "<form class='align_right' action='profile.php?playername=" . $playername . "' method='post'><button class='btn btn-secondary' type='submit' name='addfriend' value='" . $playerID . "'> Add Friend </button></form></div>";
+                                    break;
+                                case 0:
+                                    echo "<p class='align_right'> Friend request pending </p></div>";
+                                    break;
+                                case 1:
+                                    echo "<form class='align_right' action='profile.php?playername=" . $playername . "' method='post'><button class='btn btn-secondary align_right' type='submit' name='deletefriend' value='" . $playerID . "'> Delete Friend </button></form></div>";
+                                    break;
+                            }
                         } else {
                             $playerID = $userID;
+                            echo "</div>";
                         }
-                        echo "<h4>Is this guy my friend? </h4>";
+
                         $highScores = getHighScores($playerID);
                         $friends = getFriends($playerID);
-                        console_log("playerID == " . $playerID);
-                        console_log(getHighScores($playerID));
-                        console_log(getFriends($playerID));
 
                         echo "<h4 class = 'gamescores'>Game scores: </h4>";
                         if (!empty($highScores)) {
                             ?>
-                            <table class="table table-dark table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Game</th>
-                                        <th scope="col" class="text-center">High Score</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    foreach ($highScores as $key => $highscore) {
-                                        $gameURL = "../Games/";
-                                        if (strcmp($highscore->gameName, "Tetris") == 0) {
-                                            $gameURL .= "tetris.php";
-                                        } elseif (strcmp($highscore->gameName, "2048") == 0) {
-                                            $gameURL .= "2048.php";
-                                        } elseif (strcmp($highscore->gameName, "Typing Test") == 0) {
-                                            $gameURL .= "typingtest.php";
-                                        } elseif (strcmp($highscore->gameName, "Colour Blast") == 0) {
-                                            $gameURL .= "colourblast.php";
+                            <div class="table-wrapper-scroll-y scrollbar">
+                                <table class="table table-dark table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Game</th>
+                                            <th scope="col" class="text-center">High Score</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        foreach ($highScores as $key => $highscore) {
+                                            $gameURL = "../Games/";
+                                            if (strcmp($highscore->gameName, "Tetris") == 0) {
+                                                $gameURL .= "tetris.php";
+                                            } elseif (strcmp($highscore->gameName, "2048") == 0) {
+                                                $gameURL .= "2048.php";
+                                            } elseif (strcmp($highscore->gameName, "Typing Test") == 0) {
+                                                $gameURL .= "typingtest.php";
+                                            } elseif (strcmp($highscore->gameName, "Colour Blast") == 0) {
+                                                $gameURL .= "colourblast.php";
+                                            }
+                                            echo "<tr class='clickable-row' data-href='" . $gameURL . "'><td>" . $highscore->gameName . "</td><td class='text-center'>" . $highscore->highScore . "</td></tr>";
                                         }
-                                        echo "<tr class='clickable-row' data-href='" .$gameURL . "'><td>" . $highscore->gameName . "</td><td class='text-center'>" . $highscore->highScore . "</td></tr>";
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                             <?php
-                        } else {
+                        } else if ($isOwnProfile) {
                             echo "<p> You have not set any highscores yet... Play some games and set some scores!";
+                        } else {
+                            echo "<p> This player does not have any highscores yet.";
                         }
                         echo "<h4 class = 'friends'>Friends: </h4>";
                         if (!empty($friends)) {
                             ?> 
-                            <table class="table table-dark table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col" class="text-center">Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $i = 1;
-                                    foreach ($friends as $key => $friend) {
-                                        echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $friend->userName . "'><td>" . $i . "</td><td class='text-center'>" . $friend->userName . "</td></tr>";
-                                        $i++;
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                            <div class="table-wrapper-scroll-y scrollbar">
+                                <table class="table table-dark table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col" class="text-center">Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $i = 1;
+                                        foreach ($friends as $key => $friend) {
+                                            echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $friend->userName . "'><td>" . $i . "</td><td class='text-center'>" . $friend->userName . "</td></tr>";
+                                            $i++;
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                             <?php
-                        } else {
+                        } else if ($isOwnProfile) {
                             echo "<p> You do not have any friends :( find some friends in the <a href='social.php'> Social page</a>!";
+                        } else {
+                            echo "<p>This player does not have any friends.</p>";
                         }
                     } else {
                         echo "<p>This player does not exist.</p>";
