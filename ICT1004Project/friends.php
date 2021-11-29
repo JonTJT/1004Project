@@ -59,7 +59,7 @@ and open the template in the editor.
                     <?php
                     $i = 1;
                     foreach ($friends as $key => $friend) {
-                        echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $friend->userName . "'><td>" . $friend->userName . "</td><td class='text-right'><form action='friends.php' method='post'><button type='submit' name='deletefriend' value='" . $friend->userID . "'> Delete Friend </button></form></td></tr>";
+                        echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $friend->userName . "'><td>" . $friend->userName . "</td><td class='text-right'><form action='friends.php' method='post'><button class='btn btn-secondary' type='submit' name='deletefriend' value='" . $friend->userID . "'> Delete Friend </button></form></td></tr>";
                     }
                     ?>
 
@@ -84,8 +84,8 @@ and open the template in the editor.
                     foreach ($friendrequests as $key => $friendrequest) {
                         if ($friendrequest->senderID != $userID) {
                             echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $friendrequest->senderName . "'><td>" . $friendrequest->senderName . "</td><td class='text-right'><form action='friends.php' method='post'>"
-                            . "<button type='submit' name='acceptfriend' value='" . $friendrequest->senderID . "'> Accept Friend </button>"
-                            . "</form></td><td class='text-right'><form action='friends.php' method='post'><button type='submit' name='rejectfriend' value='" . $friendrequest->senderID . "'> Reject Friend Request</button></form></td></tr>";
+                            . "<button class='btn btn-secondary' type='submit' name='acceptfriend' value='" . $friendrequest->senderID . "'> Accept Friend </button>"
+                            . "</form></td><td class='text-right'><form action='friends.php' method='post'><button class='btn btn-secondary' type='submit' name='rejectfriend' value='" . $friendrequest->senderID . "'> Reject Friend Request</button></form></td></tr>";
                         }
                     }
                     ?>
@@ -111,7 +111,7 @@ and open the template in the editor.
                         <?php
                         foreach ($friendrequests as $key => $friendrequest) {
                             if ($friendrequest->senderID == $userID) {
-                                echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $friendrequest->receiverName . "'><td>" . $friendrequest->receiverName . "</td><td class='text-right'><form action='friends.php' method='post'><button type='submit' name='cancelfriend' value='" . $friendrequest->receiverID . "'> Cancel Friend Request</button></form></td></tr>";
+                                echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $friendrequest->receiverName . "'><td>" . $friendrequest->receiverName . "</td><td class='text-right'><form action='friends.php' method='post'><button class='btn btn-secondary' type='submit' name='cancelfriend' value='" . $friendrequest->receiverID . "'> Cancel Friend Request</button></form></td></tr>";
                             }
                         }
                         ?>

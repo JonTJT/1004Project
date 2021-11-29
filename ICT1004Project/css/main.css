@@ -31,15 +31,30 @@
 }
 
 .table-hover > tbody > tr:hover {
-  background-color: #999999;
-  cursor: pointer;
+    background-color: #999999;
+    cursor: pointer;
 }
 
-.friendtable{
- height:400px;
-}
 tbody{
-  overflow-y: scroll;      
-  height: 300px;           
-  width: 100%;
+    overflow-y: scroll;      
+    max-height: 20em;           
+    width: 100%;
+}
+
+.profile_head {
+    display:flex;
+}
+
+.align_right {
+    margin-left:auto;
+}
+
+.scrollbar {
+    position: relative;
+    max-height: 19em;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
 }

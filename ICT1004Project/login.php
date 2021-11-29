@@ -24,7 +24,7 @@
                 <input class="form-control" type="password" id="pwd" required name="pwd" placeholder="Enter password"> 
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit">Submit</button> 
+                <button class="btn btn-secondary" type="submit">Submit</button> 
             </div>
         </form> 
     </main> 
