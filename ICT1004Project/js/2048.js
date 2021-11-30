@@ -156,7 +156,6 @@ function sendhighscore(score){
    url: '/Games/2048.php',
    data: {highScore: score},
     error: function() {
-        //this is going to happen when you send something different from a 200 OK HTTP
         console.log("Error sending data!");
     }
  });

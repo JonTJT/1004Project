@@ -50,7 +50,12 @@ and open the template in the editor.
                     $i = 1;
                     foreach ($players as $key => $player) {
                         $isfriend = isFriends($userID, $player->userID);
-                        if ($player->userID != $userID && $i < 21) {
+                        console_log($userID);
+                        if ($userID == null && $i<21){
+                            echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $player->userName . "'><td>" . $i . "</td><td>" . $player->userName . "</td><td class='text-right'></td></tr>";
+                            $i++;
+                        }
+                        elseif ($player->userID != $userID && $i < 21) {
                             switch ($isfriend) {
                                 case -1:
                                     echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $player->userName . "'><td>" . $i . "</td><td>" . $player->userName . "</td><td class='text-right'><form action='./social.php?playername=" . $getparameter . "' method='post'><button class='btn btn-secondary' type='submit' name='addfriend' value='" . $player->userID . "'> Add Friend </button></form></td></tr>";
@@ -65,6 +70,9 @@ and open the template in the editor.
                                     $i++;
                                     break;
                             }
+                        }
+                        else {
+                            break;
                         }
                     }
                     ?>

@@ -12,7 +12,7 @@ const levels = {
     easy : 5,
     medium : 3,
     hard : 2,
-    extreme : 2
+    extreme : 1
 }
 
 // Change Levels
@@ -44,8 +44,6 @@ const words = [
 'cent',
 'oranges',
 'tense',
-'sail',
-'poor',
 'trace',
 'jellyfish',
 'parsimonious',
@@ -57,14 +55,12 @@ const words = [
 'glossy',
 'houses',
 'charming',
-'pale',
 'glass',
 'reflect',
 'dusty',
 'attach',
 'auspicious',
 'illustrious',
-'drum',
 'insidious',
 'correct',
 'bury',
@@ -82,7 +78,14 @@ const words = [
 'manifestation',
 'osteoperosis',
 'unorthodox',
-'invigorating'
+'refrigerator',
+'concentration',
+'circulation',
+'personality',
+'destruction',
+'manufacture',
+'fluctuation',
+'inappropriate'
 ];
 
 // Initialize Game
