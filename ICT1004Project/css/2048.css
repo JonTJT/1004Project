@@ -1,4 +1,9 @@
-.heading:after {
+.2048_heading{
+    display:flex;
+    justify-content: center;
+}
+
+.2048_heading:after {
     content: "";
     display: block;
     clear: both;
@@ -143,7 +148,7 @@ hr {
     }
 }
 .game-container {
-    margin-top: 10px;
+    margin: 10px auto;
     position: relative;
     padding: 15px;
     cursor: default;
@@ -585,8 +590,8 @@ hr {
         position:relative;
     }
 
-    .heading {
-        margin-bottom: 10px;
+    .2048_heading {
+        margin-bottom:10px;
     }
 
     .game-container {
@@ -788,10 +793,10 @@ hr {
         margin-top: 30px !important;
     }
 
-    .heading {
+    .2048_heading {
         display: inline-block;
     }
-    
+
     body {
         overscroll-behavior: contain;
     }

@@ -22,14 +22,14 @@
 
             <hr>
             <div class ="2048container">
-                <div class="heading">
+                <div class="2048_heading">
                     <h1 class="title">2048</h1>
                     <div class="score-container">0</div>
                 </div>
 
                 <div class="game-container">
                     <div class="game-message">
-                        <p></p>
+                        <!--<p></p>-->
                         <div class="lower">
                             <a class="retry-button">Retry</a>
                         </div>
