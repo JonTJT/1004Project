@@ -58,3 +58,59 @@ tbody{
 .table-wrapper-scroll-y {
     display: block;
 }
+
+/*html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}*/
+
+.about_title_header {
+    margin-bottom:16px;
+}
+
+.about_header{
+    text-align: center;
+    margin-bottom:16px;
+}
+
+.about_row {
+    display:flex;
+}
+
+.about_column {
+    float: left;
+    width: 50%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+}
+
+.about_card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+}
+
+.about_section {
+    padding: 25px;
+    text-align: center;
+    background-color: #474e5d;
+}
+
+.about_container {
+    padding: 0 16px;
+}
+
+.about_container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media screen and (max-width: 650px) {
+    .about_column {
+        width: 100%;
+        display: block;
+    }
+}

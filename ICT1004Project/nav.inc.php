@@ -28,6 +28,9 @@
             </li>";
             }
             ?>
+            <li class="nav-item">
+                <a class="nav-link" href="../about_us.php">About us</a>
+            </li>
         </ul>
 
 
@@ -54,7 +57,7 @@
 
                 <li class="nav-item margin_right_1 text-white">
                     <?php
-                    echo "<a class='text-white' href='./profile.php?playername=".$playername."'>" . $playername . "</a>";
+                    echo "<a class='text-white' href='./profile.php?playername=" . $playername . "'>" . $playername . "</a>";
                     ?>
 
 

@@ -19,7 +19,7 @@ and open the template in the editor.
         </header>
         <main class="container text-white">
             <section id="games">
-                <h2><u>Games</u></h2>
+                <h2>Games</h2>
                 <hr>
                 <div class="row">
                     <article class="col-sm">
