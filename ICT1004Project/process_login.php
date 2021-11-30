@@ -32,7 +32,7 @@ $check = checkUserInDB($name);
         if (!is_null($_SESSION['userName'])) {
             $success = TRUE;
         }
-        echo "<header class='register_process_header'> </header> <main class='container border-top register_process_main'> ";
+        echo "<main class='container border-top register_process_main'> ";
         if ($success) {
             echo "<h3>Login successful!</h4>";
             echo "<h4>Welcome back, " . $name . ".<br>";
