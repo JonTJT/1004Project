@@ -59,7 +59,7 @@ require __DIR__ . '/database_function.php';
                                     <div class="about_container">
                                         <h2>Wesley Chiau</h2>
                                         <p>Chief Developer</p>
-                                        <p>In charge of implementation of games on the website, and adding mobile support. Also in charge of leaderboard, social pages, and ajax operations to send highscores.</p>
+                                        <p>In charge of implementation of games on the website, and adding mobile support. Also in charge of leaderboard, social pages, friend list, and AJAX operations to send highscores.</p>
                                     </div>
                                 </div>
                             </div>
