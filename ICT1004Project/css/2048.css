@@ -1,6 +1,7 @@
 .2048_heading{
     display:flex;
     justify-content: center;
+    align-content: center;
 }
 
 .2048_heading:after {
@@ -13,7 +14,8 @@ h1.title {
     color: darkorange;
     font-size: 80px;
     font-weight: bold;
-    margin-right:22% ;
+    margin-right:22%;
+    position:absolute;
     display: block;
     float: left;
 }
@@ -577,7 +579,7 @@ hr {
     }
 
     h1.title {
-        font-size: 50px;
+        font-size: 25px;
     }
 
     .container {
@@ -793,9 +795,9 @@ hr {
         margin-top: 30px !important;
     }
 
-    .2048_heading {
+/*    .2048_heading {
         display: inline-block;
-    }
+    }*/
 
     body {
         overscroll-behavior: contain;

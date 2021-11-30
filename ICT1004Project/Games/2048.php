@@ -22,9 +22,12 @@
 
             <hr>
             <div class ="2048container">
+                <!--style="display:flex; justify-content: center"-->
                 <div class="2048_heading">
                     <h1 class="title">2048</h1>
-                    <div class="score-container">0</div>
+                    <div class="score-container">
+                        0
+                    </div>
                 </div>
 
                 <div class="game-container">
