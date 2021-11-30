@@ -135,13 +135,13 @@
 
 #soundtoggle, #pausetoggle {top: 2em;}
 #soundtoggle {left: 2em;}
-#pausetoggle {right: 2em;}
+#pausetoggle {left: 40em;}
 
 #keyLRot, #keyRRot {top: 46em;}
 #keyLeft, #keyRight {top: 55em;}
 #keyDown, #keyDDown {top: 66em;}
 #keyLRot, #keyLeft, #keyDown {left: 0;}
-#keyRRot, #keyRight, #keyDDown {right: 0;}
+#keyRRot, #keyRight, #keyDDown {left: 41em;}
 
 
 
@@ -151,7 +151,7 @@ input:checked.killafter ~ *{display: none;}
 
 #menus > div {
   position: absolute;
-  left:25%;
+  left:12.5em;
   top:30%;
   width:25em;
   background-color: #123;

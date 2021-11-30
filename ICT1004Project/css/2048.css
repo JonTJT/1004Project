@@ -95,7 +95,6 @@ p {
 
 a {
   color: #776e65;
-  text-decoration: underline;
   cursor: pointer;
 }
 
@@ -111,7 +110,6 @@ hr {
 }
 
 .container {
-  width: 500px !important;
   margin: 0 auto;
   margin-top:2em;
 }
@@ -583,6 +581,7 @@ hr {
 
   .score-container {
     margin-top: 0;
+    position:relative;
   }
 
   .heading {

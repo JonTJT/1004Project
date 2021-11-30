@@ -1,17 +1,27 @@
 <html lang="en">
 
     <head>
-<?php include "../head.inc.php"; ?>
+        <?php include "../head.inc.php"; ?>
         <link href="../css/tetris.css" rel="stylesheet" type="text/css">
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
         <script defer src="../js/tetris.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
         <link href="../css/tetris.css" rel="stylesheet" type="text/css">
+
+        <!--   Tetris license     Copyright (c) 2021 by Danijel  (https://codepen.io/vorp/pen/YzxJjev)
+
+        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+        -->
+
     </head>
 
     <body class="body_bg text-white" onload="init()">
-<?php include "../nav.inc.php"; ?>
+        <?php include "../nav.inc.php"; ?>
 
         <main class="container">
             <div class="wrap">
@@ -113,7 +123,7 @@
                         <label for="mp-none" onclick="startNewGame(1)">Play</label>
                         <label for="mp-options">Options</label>
                         <label for="mp-help">Controls</label> 
-                   </div>
+                    </div>
                     <input type="radio" name="menupick" id="mp-options"/>
                     <div>
                         <span>OPTIONS</span>
@@ -180,7 +190,7 @@
 
         </main>
 
-<?php include "../footer.inc.php"; ?>
+        <?php include "../footer.inc.php"; ?>
     </body>
 </html>
 
@@ -193,10 +203,9 @@ require '../database_function.php';
 
 $userID = $_SESSION['userID'];
 
-if (!empty($userID) && !empty($_POST['highScore']) ) {
+if (!empty($userID) && !empty($_POST['highScore'])) {
     console_log("success!");
     $result = saveScore($userID, "Tetris", $_POST['highScore']);
     console_log($result);
 }
-
 ?>
