@@ -5,6 +5,15 @@
     box-sizing: border-box;
 }
 
+.navbar-collapse_style {
+    background: #202020;
+    z-index: 1;
+}
+
+.nav-item_style {
+    margin-left:10px;
+}
+
 .wrap {
   position: relative;
   left: 50%;

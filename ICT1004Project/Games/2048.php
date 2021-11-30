@@ -23,7 +23,7 @@
             <hr>
             <div class ="2048container">
                 <!--style="display:flex; justify-content: center"-->
-                <div class="2048_heading">
+                <div class="2048_header" style="display:flex; justify-content: center; align-content: center">
                     <h1 class="title">2048</h1>
                     <div class="score-container">
                         0

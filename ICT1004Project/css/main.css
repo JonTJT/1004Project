@@ -109,8 +109,16 @@ tbody{
 }
 
 @media screen and (max-width: 650px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+    
     .about_column {
         width: 100%;
         display: block;
+    }
+    
+    .about_container{
+        padding:0 8px;
     }
 }
