@@ -1,7 +1,6 @@
 <?php
 
 function hash_password($password) {
-    $pwd_hashed = '';
     $pwd_hashed = password_hash($password, PASSWORD_DEFAULT);
     return $pwd_hashed;
 }

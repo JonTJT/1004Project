@@ -414,17 +414,16 @@ function addFriend($currentUserID, $userIDToAdd) {
     $addUser = 1;
     $conn = establishConnectionToDB();
     $friendRequests = getFriendRequests($currentUserID);
-    console_log($friendRequests);
     if ($conn->connect_error) {
         $errorMsg = "Connection to database failed: " . $conn->connect_error;
     } else {
-
+        // check if friendRequest already exists in the friends table
         foreach ($friendRequests as $friend) {
             if ($friend->senderID == $userIDToAdd || $friend->receiverID == $userIDToAdd) {
                 $addUser = 0;
             }
         }
-
+        
         if ($addUser) {
             $stmt = $conn->prepare("INSERT INTO Friends (userID_1, userID_2, status) VALUES (?, ?, ?)");
             $stmt->bind_param("iii", $currentUserID, $userIDToAdd, $GLOBALS['PENDING_STATUS']);
@@ -480,7 +479,7 @@ function deleteFriendRequest($currentUserID, $userIDToDelete) {
     return $errorMsg;
 }
 
-function getFriendID($currentUserID, $userIDToDelete) {
+function getFriendID($currentUserID, $secondUserID) {
     $friendID = 0;
     $conn = establishConnectionToDB();
     if ($conn->connect_error) {
@@ -492,7 +491,7 @@ function getFriendID($currentUserID, $userIDToDelete) {
                 "UNION " .
                 "SELECT friendID " .
                 "FROM Friends F WHERE F.userID_1 = ? AND F.userID_2 = ? AND F.status = 1");
-        $stmt->bind_param("iiii", $currentUserID, $userIDToDelete, $userIDToDelete, $currentUserID);
+        $stmt->bind_param("iiii", $currentUserID, $secondUserID, $secondUserID, $currentUserID);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
