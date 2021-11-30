@@ -24,61 +24,49 @@ require __DIR__ . '/database_function.php';
                 <p>Stay tuned for more games coming in the future!</p>
             </section>
             <h2 class="about_header margin_top_1"><u>Our Team<u></h2>
-            <div class="about_row">
-                <div class="about_column">
-                    <div class="about_card">
-                        <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
-                        <div class="about_container">
-                            <h2>Jane Doe</h2>
-                            <p>CEO & Founder</p>
-                            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                            <p>jane@example.com</p>
-                            <p><button class="btn btn-secondary">Contact</button></p>
+                        <div class="about_row">
+                            <div class="about_column">
+                                <div class="about_card">
+                                    <div class="about_container">
+                                        <h2>Darren Teo</h2>
+                                        <p>Chief Officer of Security</p>
+                                        <p>Overall in charge security, including SQL Injection and Cross Site Scripting attacks prevention. Manages user sessions and register/login page.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="about_column">
+                                <div class="about_card">
+                                    <div class="about_container">
+                                        <h2>Jon Tan</h2>
+                                        <p>Chief Designer</p>
+                                        <p>In charge of overall styling and design. Also in charge of profile page, images, and providing styling for gaming on mobile.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="about_column">
-                    <div class="about_card">
-                        <img src="/w3images/team2.jpg" alt="Mike" style="width:100%">
-                        <div class="about_container">
-                            <h2>Mike Ross</h2>
-                            <p>Art Director</p>
-                            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                            <p>mike@example.com</p>
-                            <p><button class="btn btn-secondary">Contact</button></p>
+                        <div class="about_row">
+                            <div class="about_column">
+                                <div class="about_card">
+                                    <div class="about_container">
+                                        <h2>Michael Chandiary</h2>
+                                        <p class="title">Chief Database Engineer</p>
+                                        <p>In charge of database management, involving creation and management of all tables in the database. Also in charge of web accessbility.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="about_column">
+                                <div class="about_card">
+                                    <div class="about_container">
+                                        <h2>Wesley Chiau</h2>
+                                        <p>Chief Developer</p>
+                                        <p>In charge of implementation of games on the website, and adding mobile support. Also in charge of leaderboard, social pages, and ajax operations to send highscores.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="about_row">
-                <div class="about_column">
-                    <div class="about_card">
-                        <img src="/w3images/team3.jpg" alt="John" style="width:100%">
-                        <div class="about_container">
-                            <h2>John Doe</h2>
-                            <p class="title">Designer</p>
-                            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                            <p>john@example.com</p>
-                            <p><button class="btn btn-secondary">Contact</button></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about_column">
-                    <div class="about_card">
-                        <img src="/w3images/team3.jpg" alt="John" style="width:100%">
-                        <div class="about_container">
-                            <h2>John Doe</h2>
-                            <p>Designer</p>
-                            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                            <p>john@example.com</p>
-                            <p><button class="btn btn-secondary">Contact</button></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main> 
+                        </main> 
 
-        <?php
-        include "footer.inc.php";
-        ?> 
-    </body> 
+                        <?php
+                        include "footer.inc.php";
+                        ?> 
+                        </body> 
