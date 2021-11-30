@@ -4,6 +4,16 @@ header{
     background-color: midnightblue;
     padding: 30px;
 }
+
+.grey_bg{
+    background-color:#3b3b3b;
+    color:white;
+}
+.grey_bg:focus{
+    background-color:#3b3b3b;
+    color:white;
+}
+
 .lead{
     text-align: center;
     font-weight: 600;

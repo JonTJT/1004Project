@@ -21,7 +21,7 @@
 
     <body class="body_bg">
         <?php include "../nav.inc.php"; ?>
-        <main class="container">
+        <main class="container text-white">
             <div class="container">
                 <!-- Word And Input -->
                 <div class="row">
@@ -29,8 +29,8 @@
                         <p class="lead">Type The Given Word Within in
                             <span class="text-success" id="seconds">5 Seconds:</span></p>
                         <h2 class="display-2" id="current-word">Hello</h2>
-                        <input type="text" class="form-control form-control-lg" placeholder="Start Typing..." id="word-input" autofocus>
-                        <h4 class="mt-3" id="message"></h4>
+                        <input type="text" class="form-control form-control-lg grey_bg" placeholder="Start Typing..." id="word-input" autofocus>
+                        <h4 class="mt-3 input_box" id="message"></h4>
                         <div class="row">
                             <div class="col-s12-m4">
                                 <h3>Time Left:
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <br>
-                        <div class="jumbotron col-s12">
+                        <div class="jumbotron col-s12 grey_bg">
                             <h4>Instructions</h4>
                             <p>Type each word in the given amount to score. To play again just type the current word. your score will reset</p>
                         </div>
