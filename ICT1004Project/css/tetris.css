@@ -17,7 +17,7 @@
 
 @media only screen and (max-width: 62.5vh) {
   .wrap {
-    left: 0;
+    left: -4.5em;
     top: 50vh;
     transform: translate(0, -50%);
     width: 100%;

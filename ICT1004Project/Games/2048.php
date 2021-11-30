@@ -19,49 +19,52 @@
     <body class="body_bg">
         <?php include "../nav.inc.php"; ?>
         <main class="container">
+
             <hr>
-            <div class="heading">
-                <h1 class="title">2048</h1>
-                <div class="score-container">0</div>
-            </div>
-
-            <div class="game-container">
-                <div class="game-message">
-                    <p></p>
-                    <div class="lower">
-                        <a class="retry-button">Retry</a>
-                    </div>
+            <div class ="2048container">
+                <div class="heading">
+                    <h1 class="title">2048</h1>
+                    <div class="score-container">0</div>
                 </div>
 
-                <div class="grid-container">
-                    <div class="grid-row">
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
+                <div class="game-container">
+                    <div class="game-message">
+                        <p></p>
+                        <div class="lower">
+                            <a class="retry-button">Retry</a>
+                        </div>
                     </div>
-                    <div class="grid-row">
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                    </div>
-                </div>
 
-                <div class="tile-container">
+                    <div class="grid-container">
+                        <div class="grid-row">
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                        </div>
+                        <div class="grid-row">
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                        </div>
+                        <div class="grid-row">
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                        </div>
+                        <div class="grid-row">
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                            <div class="grid-cell"></div>
+                        </div>
+                    </div>
 
+                    <div class="tile-container">
+
+                    </div>
                 </div>
             </div>
 
