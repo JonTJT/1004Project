@@ -17,7 +17,6 @@ and open the template in the editor.
 
     $userID = $_SESSION['userID'];
     $getparameter = $_GET['playername'];
-    console_log($getparameter);
     if (!empty($_GET['playername'])) {
         $playername = $_GET['playername'];
         $players = getPlayers($playername);
@@ -50,7 +49,6 @@ and open the template in the editor.
                     $i = 1;
                     foreach ($players as $key => $player) {
                         $isfriend = isFriends($userID, $player->userID);
-                        console_log($userID);
                         if ($userID == null && $i<21){
                             echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $player->userName . "'><td>" . $i . "</td><td>" . $player->userName . "</td><td class='text-right'></td></tr>";
                             $i++;
@@ -72,7 +70,8 @@ and open the template in the editor.
                             }
                         }
                         else {
-                            break;
+                            $i++;
+                            continue;
                         }
                     }
                     ?>
@@ -94,5 +93,6 @@ and open the template in the editor.
 if (!empty($_POST['addfriend'])) {
     $result = addFriend($userID, $_POST['addfriend']);
     echo "<script type='text/javascript'>alert('Friend request sent!');</script>";
+    echo "<meta http-equiv='refresh' content='0'>";
 }
 ?>
