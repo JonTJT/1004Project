@@ -14,7 +14,7 @@ and open the template in the editor.
         <?php
         include "nav.inc.php";
         ?>  
-        <header class="jumbotron text-center banner">
+        <header class="jumbotron text-center banner text-white">
             <h1 class="display-3 h1">Welcome to GAMER WORLD!</h1>
         </header>
         <main class="container text-white">

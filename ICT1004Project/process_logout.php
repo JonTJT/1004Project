@@ -12,14 +12,15 @@ $pwd_hashed = "";
 $errorMsg = "";
 $success = true;
 ?>
-<body class="body_bg">
-    <main class='body_bg container text-white margin_top_1'>
-        <h1>Logged out successfully.</h1>
-        <a class='btn btn-success register_process_btn' href='index.php'>Return to Home</a>
-    </main>
-    <?php
-    include "footer.inc.php";
-    ?> 
-</body>
-
+<html lang="en">
+    <body class="body_bg">
+        <main class='body_bg container text-white margin_top_1'>
+            <h1>Logged out successfully.</h1>
+            <a class='btn btn-success register_process_btn' href='index.php'>Return to Home</a>
+        </main>
+        <?php
+        include "footer.inc.php";
+        ?> 
+    </body>
+</html>
 

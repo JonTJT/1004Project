@@ -51,7 +51,7 @@ and open the template in the editor.
                 <thead>
                     <tr>
                         <th scope="col">Username</th>
-                        <th scope="col"></th>
+                        <th scope="col">Delete Friend</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -75,7 +75,7 @@ and open the template in the editor.
                 <thead>
                     <tr>
                         <th scope="col">Username</th>
-                        <th scope="col"></th>
+                        <th scope="col">Accept Friend </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -103,7 +103,7 @@ and open the template in the editor.
                     <thead>
                         <tr>
                             <th scope="col">Username</th>
-                            <th scope="col"></th>
+                            <th scope="col">Cancel Friend Request</th>
                         </tr>
                     </thead>
                     <tbody>

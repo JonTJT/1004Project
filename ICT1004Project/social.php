@@ -41,7 +41,7 @@ and open the template in the editor.
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Username</th>
-                        <th scope="col" class="text-right"></th>
+                        <th scope="col" class="text-right">Add Friend</th>
                     </tr>
                 </thead>
                 <tbody>

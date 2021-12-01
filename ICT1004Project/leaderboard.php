@@ -28,7 +28,7 @@ console_log($oneUserHighScores);
 
 
 
-            <h3>Tetris</h3>
+            <h2>Tetris</h2>
             <table class="table   table-dark table-hover">
                 <thead>
                     <tr>
@@ -53,7 +53,7 @@ console_log($oneUserHighScores);
 
 
 
-            <h3>2048</h3>
+            <h2>2048</h2>
 
             <table class="table   table-dark table-hover">
                 <thead>
@@ -79,7 +79,7 @@ console_log($oneUserHighScores);
 
 
 
-            <h3>Typing Test</h3>
+            <h2>Typing Test</h2>
 
             <table class="table   table-dark table-hover">
                 <thead>
@@ -102,7 +102,7 @@ console_log($oneUserHighScores);
                 </tbody>
             </table>
 
-            <h3>Colour Blast</h3>
+            <h2>Colour Blast</h2>
 
             <table class="table   table-dark table-hover">
                 <thead>
