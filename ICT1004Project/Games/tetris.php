@@ -24,6 +24,7 @@
         <?php include "../nav.inc.php"; ?>
 
         <main class="container">
+            <h1 class="text-center">Tetris</h1>
             <div class="wrap">
                 <div id="windows">
                     <div id="score">

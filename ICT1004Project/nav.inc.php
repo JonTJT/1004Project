@@ -24,7 +24,7 @@
             if (!is_null($_SESSION['userName'])) {
                 echo
                 "<li class='nav-item nav-item_style'>
-                <a class='nav-link' href='friends.php'>Friends</a>
+                <a class='nav-link' href='../friends.php'>Friends</a>
             </li>";
             }
             ?>
