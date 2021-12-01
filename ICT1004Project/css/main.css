@@ -1,3 +1,34 @@
+#gifs-rows-tetris img{
+    cursor: pointer;
+}
+
+#gifs-rows-tetris .tetrisgif{
+    display:none;
+}
+
+#gifs-rows-2048 img{
+    cursor: pointer;
+}
+
+#gifs-rows-2048 .x2048gif{
+    display:none;
+}
+
+#gifs-rows-typingtest img{
+    cursor: pointer;
+}
+
+#gifs-rows-typingtest .typingtestgif{
+    display:none;
+}
+
+#gifs-rows-colourblast img{
+    cursor: pointer;
+}
+
+#gifs-rows-colourblast .colourblastgif{
+    display:none;
+}
 .h1 {
     font-weight:bold;
 }

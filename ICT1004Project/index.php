@@ -26,7 +26,10 @@ and open the template in the editor.
                         <h3>Tetris</h3>
                         <a href="Games/tetris.php">
                             <figure>
-                                <img class="img-thumbnail" src="images/tetris.png" alt="tetris" title="Teris"/>
+                                <div id ="gifs-rows-tetris">
+                                    <img src="images/tetris.png" class ="tetrispng">
+                                    <img src="images/Tetris2.gif" class ="tetrisgif">
+                                </div>
                             </figure>
                         </a>
                         <p class="game_description">
@@ -37,7 +40,11 @@ and open the template in the editor.
                         <h3>2048</h3>
                         <a href="Games/2048.php">
                             <figure>
-                                <img class="img-thumbnail" src="images/2048.png" alt="2048" title="2048"/>
+<!--                                <img class="img-thumbnail" src="images/2048.png" alt="2048" title="2048"/>-->
+                                <div id ="gifs-rows-2048">
+                                    <img src="images/2048.png" class ="x2048png">
+                                    <img src="images/2048.gif" class ="x2048gif">
+                                </div>
                             </figure>
                         </a>
                         <p class="game_description">
@@ -50,7 +57,11 @@ and open the template in the editor.
                         <h3>Typing Test</h3>
                         <a href="Games/typingtest.php">
                             <figure>
-                                <img class="img-thumbnail" src="images/typingtest.png" alt="typing test" title="Typing Test"/>
+<!--                                <img class="img-thumbnail" src="images/typingtest.png" alt="typing test" title="Typing Test"/>-->
+                                <div id ="gifs-rows-typingtest">
+                                    <img src="images/typingtest.png" class ="typingtestpng">
+                                    <img src="images/typing.gif" class ="typingtestgif">
+                                </div>
                             </figure>
                         </a>
                         <p class="game_description">
@@ -61,7 +72,11 @@ and open the template in the editor.
                         <h3>Colour Blast</h3>
                         <a href="Games/colourblast.php">
                             <figure>
-                                <img class="img-thumbnail" src="images/colourblast.png" alt="colour blast" title="Color Blast"/>
+<!--                                <img class="img-thumbnail" src="images/colourblast.png" alt="colour blast" title="Color Blast"/>-->
+                                <div id ="gifs-rows-colourblast">
+                                    <img src="images/colourblast.png" class ="colourblastpng">
+                                    <img src="images/colorblast.gif" class ="colourblastgif">
+                                </div>
                             </figure>
                         </a>
                         <p class="game_description">
