@@ -66,8 +66,9 @@
                         <img src="../images/login-icon.png" alt="login">
                     </a>
                 </li>
-            <?php endif ?>
+            </ul>
 
-        </ul>
+        <?php endif ?>
+
     </div>
 </nav>

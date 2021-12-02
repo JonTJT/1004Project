@@ -133,3 +133,4 @@ console_log($oneUserHighScores);
         include "footer.inc.php";
         ?> 
     </body> 
+</html>
