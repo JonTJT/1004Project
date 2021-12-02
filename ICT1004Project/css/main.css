@@ -153,3 +153,9 @@ tbody{
         padding:0 8px;
     }
 }
+
+
+ /*HOTFIX TOREMOVE:*/
+ .hotfix{
+     height:10px;
+ }
