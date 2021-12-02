@@ -23,7 +23,7 @@ require __DIR__ . '/database_function.php';
                 <p>We have a passionate team always thinking of the next game to include and improve on!</p>
                 <p>Stay tuned for more games coming in the future!</p>
             </section>
-            <h2 class="about_header margin_top_1"><u>Our Team<u></h2>
+            <h2 class="about_header margin_top_1"><u>Our Team</u></h2>
                         <div class="about_row">
                             <div class="about_column">
                                 <div class="about_card">
