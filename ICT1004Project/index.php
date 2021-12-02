@@ -27,8 +27,8 @@ and open the template in the editor.
                         <a href="Games/tetris.php">
                             <figure>
                                 <div id ="gifs-rows-tetris">
-                                    <img src="images/tetris.png" class ="tetrispng">
-                                    <img src="images/Tetris2.gif" class ="tetrisgif">
+                                    <img src="images/tetris.png" class ="tetrispng img-thumbnail">
+                                    <img src="images/Tetris2.gif" class ="tetrisgif img-thumbnail">
                                 </div>
                             </figure>
                         </a>
@@ -42,8 +42,8 @@ and open the template in the editor.
                             <figure>
 <!--                                <img class="img-thumbnail" src="images/2048.png" alt="2048" title="2048"/>-->
                                 <div id ="gifs-rows-2048">
-                                    <img src="images/2048.png" class ="x2048png">
-                                    <img src="images/2048.gif" class ="x2048gif">
+                                    <img src="images/2048.png" class ="x2048png img-thumbnail">
+                                    <img src="images/2048.gif" class ="x2048gif img-thumbnail">
                                 </div>
                             </figure>
                         </a>
@@ -59,8 +59,8 @@ and open the template in the editor.
                             <figure>
 <!--                                <img class="img-thumbnail" src="images/typingtest.png" alt="typing test" title="Typing Test"/>-->
                                 <div id ="gifs-rows-typingtest">
-                                    <img src="images/typingtest.png" class ="typingtestpng">
-                                    <img src="images/typing.gif" class ="typingtestgif">
+                                    <img src="images/typingtest.png" class ="typingtestpng img-thumbnail">
+                                    <img src="images/typing.gif" class ="typingtestgif img-thumbnail">
                                 </div>
                             </figure>
                         </a>
@@ -74,8 +74,8 @@ and open the template in the editor.
                             <figure>
 <!--                                <img class="img-thumbnail" src="images/colourblast.png" alt="colour blast" title="Color Blast"/>-->
                                 <div id ="gifs-rows-colourblast">
-                                    <img src="images/colourblast.png" class ="colourblastpng">
-                                    <img src="images/colorblast.gif" class ="colourblastgif">
+                                    <img src="images/colourblast.png" class ="colourblastpng img-thumbnail">
+                                    <img src="images/colorblast.gif" class ="colourblastgif img-thumbnail">
                                 </div>
                             </figure>
                         </a>
