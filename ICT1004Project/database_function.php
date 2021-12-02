@@ -5,6 +5,7 @@ require __DIR__ . '/common_function.php';
 $GLOBALS['CONFIRMED_STATUS'] = 1;
 $GLOBALS['PENDING_STATUS'] = 0;
 
+// start connection to database
 function establishConnectionToDB() {
     $config = parse_ini_file('/var/www/private/db-config.ini');
     $conn = new mysqli($config['servername'], $config['username'],
@@ -12,6 +13,7 @@ function establishConnectionToDB() {
     return $conn;
 }
 
+// return true or false value depending on user name
 function checkUserInDB($name) {
     $name = sanitize_input($name);
     $errorMsg = '';
@@ -39,6 +41,7 @@ function checkUserInDB($name) {
     return $exists;
 }
 
+// return appropriate message to user depending on outcome
 function saveUserToDB($name, $pwd) {
     $errorMsg = '';
     $name = sanitize_input($name);
@@ -61,6 +64,7 @@ function saveUserToDB($name, $pwd) {
     return $errorMsg;
 }
 
+// return userID and userName if name and password provided in database
 function authenticateUser($name, $pwd) {
     $obj = new stdClass;
     $arr = (array) $obj;
@@ -95,6 +99,7 @@ function authenticateUser($name, $pwd) {
     return !$arr ? $obj : $errorMsg;
 }
 
+// return userName if id provided in database
 function getUserName($userID) {
     $userName = $errorMsg = '';
     $conn = establishConnectionToDB();
@@ -118,6 +123,7 @@ function getUserName($userID) {
     return $userName ? $userName : $errorMsg;
 }
 
+// return userID if name provided in database
 function getUserID($userName) {
     $userID = $errorMsg = '';
     $conn = establishConnectionToDB();
@@ -141,6 +147,7 @@ function getUserID($userName) {
     return $userID ? $userID : $errorMsg;
 }
 
+// return a list of highscores for one user or top 3 for all games depending on input
 function getHighScores($userID = 0) {
     $gameIDList = [1, 2, 3, 4];
     $highScores = array();
@@ -182,6 +189,7 @@ function getHighScores($userID = 0) {
     return $highScores;
 }
 
+// return highscore of the provided user and game
 function getCurrentGameHighScore($userID, $gameID) {
     $currentHighScore = 0;
     $conn = establishConnectionToDB();
@@ -208,6 +216,7 @@ function getCurrentGameHighScore($userID, $gameID) {
     return $currentHighScore;
 }
 
+// return the id of game in db
 function getGameID($name) {
     $gameID = $errorMsg = '';
     $conn = establishConnectionToDB();
@@ -231,6 +240,9 @@ function getGameID($name) {
     return is_numeric($gameID) ? $gameID : $errorMsg;
 }
 
+// return relevant message depending on the inputs
+// if new record > old record, delete old and insert new
+// if new record < old record, do nothing
 function saveScore($userID, $gameName, $highScore) {
     $errorMsg = '';
     $conn = establishConnectionToDB();
@@ -268,6 +280,7 @@ function saveScore($userID, $gameName, $highScore) {
     return $errorMsg;
 }
 
+// return an array of players with their name and id with the given input
 function getPlayers($name) {
     $players = array();
     $conn = establishConnectionToDB();
@@ -298,6 +311,7 @@ function getPlayers($name) {
     return $players;
 }
 
+// return an array of all players and players id except current user
 function getAllPlayers($userID) {
     $players = array();
     $conn = establishConnectionToDB();
@@ -327,6 +341,7 @@ function getAllPlayers($userID) {
     return $players;
 }
 
+// return an array of all friends with the current user along with their name and id 
 function getFriends($userID) {
     $friends = array();
     $conn = establishConnectionToDB();
@@ -356,6 +371,7 @@ function getFriends($userID) {
     return $friends;
 }
 
+// return true or false to check whether 2 users are friends
 function isFriends($userID1, $userID2) {
     $isFriend = -1;
     $conn = establishConnectionToDB();
@@ -378,6 +394,7 @@ function isFriends($userID1, $userID2) {
     return $isFriend;
 }
 
+// return an array of friend requests that current user have
 function getFriendRequests($userID) {
     $friendRequests = array();
     $conn = establishConnectionToDB();
@@ -409,6 +426,7 @@ function getFriendRequests($userID) {
     return $friendRequests;
 }
 
+// return relevant message & insert a new row into database (friends table) between the 2 users in the input
 function addFriend($currentUserID, $userIDToAdd) {
     $errorMsg = '';
     $addUser = 1;
@@ -441,6 +459,7 @@ function addFriend($currentUserID, $userIDToAdd) {
     return $errorMsg;
 }
 
+// return relevant message when accepting friend request by changing status to 1
 function updateFriendRequest($currentUserID, $userIDToAdd) {
     $errorMsg = '';
     $conn = establishConnectionToDB();
@@ -460,6 +479,7 @@ function updateFriendRequest($currentUserID, $userIDToAdd) {
     return $errorMsg;
 }
 
+// return relevant message when deleting friend request by HARD deleting row in friends table
 function deleteFriendRequest($currentUserID, $userIDToDelete) {
     $errorMsg = '';
     $conn = establishConnectionToDB();
@@ -479,6 +499,7 @@ function deleteFriendRequest($currentUserID, $userIDToDelete) {
     return $errorMsg;
 }
 
+// return the friendID between 2 users
 function getFriendID($currentUserID, $secondUserID) {
     $friendID = 0;
     $conn = establishConnectionToDB();
@@ -507,6 +528,7 @@ function getFriendID($currentUserID, $secondUserID) {
     return $friendID;
 }
 
+// return relevant message when deleting friend by HARD deleting row in friends table
 function deleteFriend($currentUserID, $userIDToDelete) {
     $errorMsg = '';
     $conn = establishConnectionToDB();
@@ -527,6 +549,7 @@ function deleteFriend($currentUserID, $userIDToDelete) {
     return $errorMsg;
 }
 
+// return an array of friends highscores
 function getFriendHighScore($userID) {
     $friendHighScores = array();
 
