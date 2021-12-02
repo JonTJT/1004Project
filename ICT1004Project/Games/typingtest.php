@@ -1,11 +1,8 @@
+<!DOCTYPE html>
 <html lang="en">
 
     <head>
         <?php include "../head.inc.php"; ?>
-        <?php include "../nav.inc.php"; ?>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="../css/typingtest.css" rel="stylesheet" type="text/css">
         <script defer src="../js/typingtest.js"></script>
 
@@ -21,6 +18,7 @@
     </head>
 
     <body class="body_bg">
+        <?php include "../nav.inc.php"; ?>
         <main class="container text-white">
             <div class="container">
                 <!-- Word And Input -->
@@ -28,9 +26,9 @@
                     <div class="col">
                         <p class="lead">Type The Given Word Within
                             <span class="text-white" id="seconds">5 Seconds:</span></p>
-                        <h1 class="display-2 text-center" id="current-word">Hello</h2>
+                        <h2 class="display-2 text-center" id="current-word">Hello</h2>
                             <input type="text" class="form-control form-control-lg grey_bg" placeholder="Start Typing..." id="word-input" autofocus>
-                            <h2 class="mt-3 input_box" id="message"></h2>
+                            <h2 class="mt-3 input_box" id="message">Type to start!</h2>
                             <div class="row">
                                 <div class="col-s12-m4">
                                     <h3>Time Left:
@@ -38,14 +36,14 @@
                                     </h3>
                                 </div>
                                 <div class="col">
-                                    <h3>Score:
+                                    <h3 class="text-right">Score:
                                         <span id="score">0</span>
                                     </h3>
                                 </div>
                             </div>
                             <br>
                             <div class="jumbotron col-s12 grey_bg">
-                                <h2>Instructions</h2>
+                                <h1>Instructions</h1>
                                 <p>Type each word in the given amount to score. To play again just type the current word. your score will reset</p>
                             </div>
                     </div>

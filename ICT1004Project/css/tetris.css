@@ -186,7 +186,7 @@ input:checked.killafter ~ *{display: none;}
   border: 0.25em solid #567;
   border-radius: 0.5em;
   cursor: pointer;
-
+  color:white;
 }
 
 #menus > div > label:hover {
