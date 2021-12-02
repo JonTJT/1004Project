@@ -32,7 +32,7 @@
 
                 <div class="game-container">
                     <div class="game-message">
-                        <!--<p></p>-->
+                        <p>Game Over!</p>
                         <div class="lower">
                             <a class="retry-button">Retry</a>
                         </div>
