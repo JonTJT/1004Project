@@ -19,8 +19,8 @@ require __DIR__ . '/database_function.php';
         <main class="container text-white margin_top_1"> 
             <section class="about_section">
                 <h1 class="about_title_header">About Us Page</h1>
-                <p>At Gamer World, we strive to make the best games for our players to enjoy.</p>
-                <p>We have a passionate team always thinking of the next game to create!</p>
+                <p>At Gamer World, we strive to host the best browser games for our players to enjoy on both mobile and desktop.</p>
+                <p>We have a passionate team always thinking of the next game to include and improve on!</p>
                 <p>Stay tuned for more games coming in the future!</p>
             </section>
             <h2 class="about_header margin_top_1"><u>Our Team<u></h2>
