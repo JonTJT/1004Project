@@ -28,7 +28,7 @@
                     <div class="col">
                         <p class="lead">Type The Given Word Within
                             <span class="text-white" id="seconds">5 Seconds:</span></p>
-                        <h1 class="display-2" id="current-word">Hello</h2>
+                        <h1 class="display-2 text-center" id="current-word">Hello</h2>
                             <input type="text" class="form-control form-control-lg grey_bg" placeholder="Start Typing..." id="word-input" autofocus>
                             <h2 class="mt-3 input_box" id="message"></h2>
                             <div class="row">
