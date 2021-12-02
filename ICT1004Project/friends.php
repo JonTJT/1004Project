@@ -16,6 +16,10 @@ and open the template in the editor.
     require 'database_function.php';
 
     $userID = $_SESSION['userID'];
+    
+    // Friend requests function returns all current pending friend requests from the userfriend table,
+    // while friends returns all confirmed friends.
+    
     $friendrequests = getFriendRequests($userID);
     $friends = getFriends($userID);
     ?>
@@ -25,6 +29,9 @@ and open the template in the editor.
         <main class="container text-white margin_top_1"> 
 
             <?php
+            // This section of code checks if any post request has been sent over, and will subsequently execute that 
+            // function based on the form data, and echo an alert for that function.
+            
             if (!empty($_POST['deletefriend'])) {
                 $result = deleteFriend($userID, $_POST['deletefriend']);
                 echo "<script type='text/javascript'>alert('Friend deleted!');</script>";
@@ -57,6 +64,9 @@ and open the template in the editor.
                 <tbody>
 
                     <?php
+                    
+                    // Generates table rows based on the current friend status. Each table will generate different form buttons for friends.
+                    
                     $i = 1;
                     foreach ($friends as $key => $friend) {
                         echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $friend->userName . "'><td>" . $friend->userName . "</td><td class='text-right'><form action='friends.php' method='post'><button class='btn btn-secondary' type='submit' name='deletefriend' value='" . $friend->userID . "'> Delete Friend </button></form></td></tr>";

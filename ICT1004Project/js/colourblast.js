@@ -73,13 +73,13 @@
                 if (Game.isGameOver) {
                     Game.init();
                 }
-                e.preventDefault();
+                e.preventDefault(); // This prevents users from triggering the scrollbar
             }
         },
 
         buttonUp: function (e) {
-            if (e.keyCode === 32) {
-                e.preventDefault();
+            if (e.keyCode === 32) {                
+                e.preventDefault(); 
             }
             if (e.keyCode === 37 || e.keyCode === 65) {
                 Game.player.movingLeft = false;
@@ -214,6 +214,7 @@
     }
     ;
 
+    // Event listeners for the buttons, which register on click and touch.
     function addleftbuttonlistener(colourbutton) {
         colourbutton.addEventListener("mousedown", leftbuttondown);
         colourbutton.addEventListener("mouseup", leftbuttonup);
@@ -229,7 +230,8 @@
         colourbutton.addEventListener("touchend", rightbuttonup);
     }
     ;
-
+    
+    // The event listeners trigger the moving left/right booleans to move the character.
     function leftbuttondown() {
         Game.player.movingLeft = true;
     }

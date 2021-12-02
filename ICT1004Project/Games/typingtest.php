@@ -58,12 +58,11 @@
 <?php
 require '../database_function.php';
 
-//need to get userID to replace the first parameter
-
 $userID = $_SESSION['userID'];
 
+// This section of code sends the highscore over to database_functions.php to 
+// process if the highscore should be updated in the database.
 if (!empty($userID) && !empty($_POST['highScore'])) {
-    console_log("success!");
     $result = saveScore($userID, "Typing Test", $_POST['highScore']);
 }
 ?>

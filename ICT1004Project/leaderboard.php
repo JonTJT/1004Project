@@ -3,11 +3,9 @@
 <?php
 require __DIR__ . '/database_function.php';
 
+// getHighScores stores all the top 3 highest scores from each game into an array.
 $highScores = getHighScores();
-console_log($highScores);
 
-$oneUserHighScores = getHighScores(5);
-console_log($oneUserHighScores);
 ?>
 
 <html lang="en">
@@ -26,8 +24,6 @@ console_log($oneUserHighScores);
             <h1>Leaderboards</h1>
             <hr>
 
-
-
             <h2>Tetris</h2>
             <table class="table   table-dark table-hover">
                 <thead>
@@ -39,7 +35,9 @@ console_log($oneUserHighScores);
                 </thead>
                 <tbody>
                     <?php
-                    $i = 1;
+                    $i = 1; // Integer to track the current row
+                    
+                    // This for loop iterates through element in the array, and prints out the row based on the game.
                     foreach ($highScores as $key => $highscore) {
                         if (strcmp($highscore->gameName, "Tetris") == 0) {
                             echo "<tr class='clickable-row' data-href='./profile.php?playername=" . $highscore->userName . "'><td>" . $i . "</td><td>" . $highscore->userName . "</td><td class='text-center'>" . $highscore->highScore . "</td></tr>";

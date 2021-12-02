@@ -25,6 +25,7 @@
             <div class="container">
                 <div class="game-wrap">
                     <canvas width="960" height="540" id="game"></canvas>
+                    <!--Buttons were added to allow mobile users to play the game-->
                     <article class="content">
                         <div class="buttons" id="screenkeys">
                             <div id="keyLeft" >
@@ -59,15 +60,11 @@
 <?php
 require '../database_function.php';
 
-//need to get userID to replace the first parameter
-//$errorMsg = saveScore(7, "Tetris", 20000);
-//console_log($errorMsg);
-
 $userID = $_SESSION['userID'];
 
+// This section of code sends the highscore over to database_functions.php to 
+// process if the highscore should be updated in the database.
 if (!empty($userID) && !empty($_POST['highScore'])) {
-    console_log("success!");
     $result = saveScore($userID, "Colour Blast", $_POST['highScore']);
-    console_log($result);
 }
 ?>
